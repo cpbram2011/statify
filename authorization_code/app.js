@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-var redirect_uri = 'http://localhost:8888/in'; // Your redirect uri
+var redirect_uri = 'http://localhost:5000/welcome'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -34,18 +34,18 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
-var app = express();
+var router = express();
 
-app.use(express.static(__dirname + '/public'))
+router.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-app.get('/login', function(req, res) {
+router.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
+  // your routerlication requests authorization
   var scope = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -57,9 +57,9 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/callback', function(req, res) {
+router.get('/callback', function(req, res) {
 
-  // your application requests refresh and access tokens
+  // your routerlication requests refresh and access tokens
   // after checking the state parameter
 
   var code = req.query.code || null;
@@ -119,7 +119,7 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/refresh_token', function(req, res) {
+router.get('/refresh_token', function(req, res) {
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -143,5 +143,5 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log('Listening on 8000');
+router.listen(8000);
