@@ -19,18 +19,18 @@ var redirect_uri = 'http://localhost:5000/welcome'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  * @param  {number} length The length of the string
+  * @return {string} The generated string
+  */
+  var generateRandomString = function(length) {
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
+    for (var i = 0; i < length; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  };
 
 var stateKey = 'spotify_auth_state';
 
@@ -59,7 +59,7 @@ router.get('/login', function(req, res) {
 
 router.get('/callback', function(req, res) {
 
-  // your routerlication requests refresh and access tokens
+  // your application requests refresh and access tokens
   // after checking the state parameter
 
   var code = req.query.code || null;
