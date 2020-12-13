@@ -1,0 +1,31 @@
+{
+  "name": "statify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpbram2011/statify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cpbram2011/statify/issues"
+  },
+  "homepage": "https://github.com/cpbram2011/statify#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.4",
+    "express": "^4.17.1",
+    "querystring": "~0.2.0",
+    "request": "~2.83.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
