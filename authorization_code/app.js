@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-var redirect_uri = 'http://localhost:5000/welcome'; // Your redirect uri
+var redirect_uri = 'http://localhost:5000/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -34,13 +34,13 @@ var redirect_uri = 'http://localhost:5000/welcome'; // Your redirect uri
 
 var stateKey = 'spotify_auth_state';
 
-var router = express();
+var app = express();
 
-router.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-router.get('/login', function(req, res) {
+app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -57,7 +57,7 @@ router.get('/login', function(req, res) {
     }));
 });
 
-router.get('/callback', function(req, res) {
+app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -119,7 +119,7 @@ router.get('/callback', function(req, res) {
   }
 });
 
-router.get('/refresh_token', function(req, res) {
+app.get('/refresh_token', function(req, res) {
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -143,5 +143,5 @@ router.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8000');
-router.listen(8000);
+console.log('Listening on 5000');
+app.listen(5000);
