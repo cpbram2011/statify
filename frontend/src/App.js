@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-import {Switch} from 'react-router-dom'
+import React from 'react';
 
 
-function App() {
-  
-  debugger
-
-
-
-  return (
-    <div className="App">
-      <header className="App-header">
-
-      <a href="http://localhost:5000/login" class="btn btn-primary">Log in with Spotify</a>
-
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super();
+    const params = this.getHashParams();
+    console.log(params);
+  }
+  getHashParams() {
+    var hashParams = {};
+    debugger
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    e = r.exec(q)
+    while (e) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+       e = r.exec(q);
+    }
+    return hashParams;
+  }
+  render() {
+    debugger
+    return (
+      <div className="App">
+        <a href='http://localhost:8000/login' > Login to Spotify </a>
+      </div>
+    );
+  }
 }
 
 export default App;

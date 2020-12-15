@@ -16,7 +16,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-var redirect_uri = 'http://localhost:3000/home'; // Your redirect uri
+var redirect_uri = 'http://localhost:3000/home/#'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -35,7 +35,7 @@ var redirect_uri = 'http://localhost:3000/home'; // Your redirect uri
 
 var stateKey = 'spotify_auth_state';
 
-var router = express();
+var router = express.Router();
 
 router.use(express.static(__dirname + '/public'))
    .use(cors())
@@ -47,7 +47,7 @@ router.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your routerlication requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email user-read-recently-played user-follow-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -105,7 +105,7 @@ router.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect(redirect_uri + '/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -144,5 +144,6 @@ router.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 5000');
-router.listen(5000);
+// console.log('Listening on 5000');
+// router.listen(5000);
+module.exports = router;
