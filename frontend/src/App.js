@@ -7,7 +7,7 @@ export default class App extends React.Component {
     const params = this.getHashParams();
     console.log(params);
   }
-  getHashParams() {
+  getHashParams() { // <--
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
     q = window.location.hash.substring(1);
