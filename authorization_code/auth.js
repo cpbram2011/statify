@@ -47,7 +47,7 @@ router.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your routerlication requests authorization
-  var scope = 'user-read-private user-read-email user-read-recently-played user-follow-read';
+  var scope = 'user-read-private user-read-email user-read-recently-played user-read-playback-state user-modify-playback-state user-follow-read user-read-currently-playing user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -103,7 +103,7 @@ router.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           console.log(body);
         });
-        console.log(res)
+        // console.log(res)
         // we can also pass the token to the browser to make requests from there
         res.redirect('http://localhost:3000/#' +
           querystring.stringify({
