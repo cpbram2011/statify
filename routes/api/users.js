@@ -1,6 +1,6 @@
-var secret = require('./config/keys')
-const router = express.Router();
+var secret = require('../../config/keys')
 var express = require('express'); // Express web server framework
+var router = express.Router();
 var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-var redirect_uri = 'http://localhost:5000/callback'; // Your redirect uri
+var redirect_uri = 'http://localhost:8000/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -28,7 +28,7 @@ var generateRandomString = function (length) {
 
 var stateKey = 'spotify_auth_state';
 
-var router = express();
+
 
 router.use(express.static(__dirname + '/public'))
     .use(cors())
@@ -98,7 +98,7 @@ router.get('/callback', function (req, res) {
                 });
 
                 // we can also pass the token to the browser to make requests from there
-                res.redirect('/#' +
+                res.redirect('http://localhost:3000/#' +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token
