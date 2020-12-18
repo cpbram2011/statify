@@ -89,10 +89,20 @@ export default class App extends React.Component {
   }
   
   getMyTopTracks () {
-    spotifyApi.getMyTopArtists().then(res => {
-  
-        console.log(res)
-        this.setState({ topTracks: res})
+    spotifyApi.getMyTopTracks().then(res => {
+      let tops = [];
+      for (let i=0; i < res.items.length; i++) {
+        let play = {}
+        debugger
+        play.albumArt = res.items[i].track.album.images[0].url;
+        play.title = res.items[i].track.name;
+        play.album = res.items[i].track.album.name;
+        play.artist = res.items[i].track.artists[0].name;
+        tops.push(play);
+      }
+      this.setState({
+        topTracks: tops
+      })
       }).catch(err =>{ 
         console.log(err)})
     
