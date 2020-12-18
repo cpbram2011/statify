@@ -14,7 +14,8 @@ export default class App extends React.Component {
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
-      recentlyPlayed: []
+      recentlyPlayed: [],
+      topTracks: []
     }
 
   }
@@ -36,7 +37,7 @@ export default class App extends React.Component {
   getNowPlaying(){
     spotifyApi.getMyCurrentPlayingTrack()
       .then((response) => {
-        debugger
+        
         this.setState({
           nowPlaying: {
             name: response.item.name,
@@ -87,6 +88,31 @@ export default class App extends React.Component {
       })
   }
   
+  getMyTopTracks () {
+    // spotifyApi.getMyTopArtists().then(res => {
+    //   debugger
+    //     console.log(res)})
+    // //     this.setState({ topTracks: res})
+    //   }).catch(err =>{ 
+    //     debugger
+    //     console.log(err)})
+    
+    // $.ajax({
+    //   url: 'https://api.spotify.com/v1/me',
+    //   headers: {
+    //       'Authorization': 'Bearer ' + params.access_token
+    //   },
+    // }).then(res => {
+    //     debugger
+    //       console.log(res)})
+    //   //     this.setState({ topTracks: res})
+    //     .catch(err =>{ 
+    //       debugger
+    //       console.log(err)})
+        
+
+  }
+
   render() {
     let recent
     if(this.state.recentlyPlayed.length > 0){
@@ -121,11 +147,16 @@ export default class App extends React.Component {
           </button>
         }
         <div>
-          
+          {/* vvv ? */}
             {this.state.loggedIn &&
+            <>
               <button onClick={() => this.getRecentlyPlayed()}>
                 Check Recent Plays
           </button>
+              <button onClick={() => this.getMyTopTracks()}>
+                Check Top Tracks
+          </button>
+          </>
             }
           <div className="center cf">
             <h2> Recently Played </h2>
