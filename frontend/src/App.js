@@ -6,7 +6,7 @@ export default class App extends React.Component {
   constructor(){
     super();
     const params = this.getHashParams();
-    console.log(params);
+    // console.log(params);
     const token = params.access_token
     if(token){
       spotifyApi.setAccessToken(token)
@@ -14,7 +14,8 @@ export default class App extends React.Component {
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
-      recentlyPlayed: []
+      recentlyPlayed: [],
+      topTracks: []
     }
 
   }
@@ -29,14 +30,14 @@ export default class App extends React.Component {
       e = r.exec(q);
     }
     
-    console.log(hashParams)
+    // console.log(hashParams)
     return hashParams;
   }
 
   getNowPlaying(){
     spotifyApi.getMyCurrentPlayingTrack()
       .then((response) => {
-        debugger
+        
         this.setState({
           nowPlaying: {
             name: response.item.name,
@@ -68,7 +69,7 @@ export default class App extends React.Component {
     // Will display time in 10:30:23 format
     var formattedTime = year + "," + month + " " + day + " " + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     
-    console.log(formattedTime);
+    // console.log(formattedTime);
     spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 })
       .then((response) => {
         let recent = []
@@ -87,6 +88,19 @@ export default class App extends React.Component {
       })
   }
   
+  getMyTopTracks () {
+    spotifyApi.getMyTopArtists().then(res => {
+  
+        console.log(res)
+        this.setState({ topTracks: res})
+      }).catch(err =>{ 
+        console.log(err)})
+    
+
+
+
+  }
+
   render() {
     let recent
     if(this.state.recentlyPlayed.length > 0){
@@ -104,8 +118,8 @@ export default class App extends React.Component {
           )
         })
     }
-    console.log(this.state.recentlyPlayed)
-    console.log(recent)
+    // console.log(this.state.recentlyPlayed)
+    // console.log(recent)
     return (
       <div className="App">
         <a href='http://localhost:8000/login' > Login to Spotify </a>
@@ -121,11 +135,16 @@ export default class App extends React.Component {
           </button>
         }
         <div>
-          
+          {/* vvv ? */}
             {this.state.loggedIn &&
+            <>
               <button onClick={() => this.getRecentlyPlayed()}>
                 Check Recent Plays
           </button>
+              <button onClick={() => this.getMyTopTracks()}>
+                Check Top Tracks
+          </button>
+          </>
             }
           <div className="center cf">
             <h2> Recently Played </h2>
