@@ -15,11 +15,12 @@ export default class App extends React.Component {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       recentlyPlayed: [],
-      topTracks: []
+      topTracks: [],
+      features: {}
     }
 
   }
-  getHashParams() { // <--
+  getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
     q = window.location.hash.substring(2);
@@ -73,7 +74,7 @@ export default class App extends React.Component {
     spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 })
       .then((response) => {
         let recent = []
-        debugger
+        
         for(let i = 0; i < response.items.length; i ++){
           let play = {}
           play.albumArt = response.items[i].track.album.images[0].url
@@ -89,27 +90,52 @@ export default class App extends React.Component {
   }
   
   getMyTopTracks () {
-    spotifyApi.getMyTopTracks().then(res => {
-      let tops = [];
-      for (let i=0; i < res.items.length; i++) {
-        let play = {}
-        debugger
-        play.albumArt = res.items[i].track.album.images[0].url;
-        play.title = res.items[i].track.name;
-        play.album = res.items[i].track.album.name;
-        play.artist = res.items[i].track.artists[0].name;
-        tops.push(play);
-      }
-      this.setState({
-        topTracks: tops
+    spotifyApi.getMyTopTracks({offset: this.state.topTracks.length}).then(res => {
+      // let tops = [];
+      // for (let i=0; i < res.items.length; i++) {
+      //   let play = {}
+        
+      // }
+      // this.setState({
+      //   topTracks: tops
+      //   })
+      let newTops = []
+      let trackIds = []
+      res.items.forEach(item => {
+        trackIds.push(item.id)
+        newTops.push(item.name)
+        
       })
-      }).catch(err =>{ 
+      this.setState({topTracks: this.state.topTracks.concat(newTops)})
+      this.getFeatures('top', trackIds)
+
+    })
+      .catch(err =>{ 
         console.log(err)})
     
-
-
-
   }
+
+  getFeatures(key, trackIds) {
+    let ret = {}
+    spotifyApi.getAudioFeaturesForTracks(trackIds)
+      .then(res => {
+        let currentLength = this.state.topTracks.length - trackIds.length
+        res.audio_features.forEach((item, i) => {
+          ret[currentLength + i+1] = item
+        })
+        let newState = Object.assign({}, this.state.features[key], ret)
+        console.log(key)
+        this.setState({features: {[key]: newState}})
+        debugger
+        console.log(this.state.features)
+        console.log(this.state.topTracks)
+      }).catch(err => {
+        console.log(err)
+    })
+    
+  }
+
+
 
   render() {
     let recent
