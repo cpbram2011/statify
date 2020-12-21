@@ -11,6 +11,8 @@ export default class App extends React.Component {
     if(token){
       spotifyApi.setAccessToken(token)
     }
+
+    
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
