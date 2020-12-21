@@ -12,7 +12,7 @@ export default class App extends React.Component {
       spotifyApi.setAccessToken(token)
     }
 
-    
+
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
@@ -187,6 +187,8 @@ export default class App extends React.Component {
           <div className="center cf">
             <h2> Recently Played </h2>
             
+            <canvas id="myChart" width="400" height="400"></canvas>
+
           {recent}
           </div>
         </div>
