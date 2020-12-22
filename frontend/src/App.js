@@ -1,6 +1,20 @@
 import React from 'react';
-import spotifyApi from '../src/util/spotify_api_util'
-export default class App extends React.Component {
+import spotifyApi from '../src/util/spotify_api_util';
+import {setAccessToken} from '../src/actions/spotify_actions'
+import {connect} from 'react-redux';
+
+const mSTP = state => {
+  
+  return ({
+  isAuthenticated: state.isAuthenticated,
+})}
+
+const mDTP = dispatch => ({
+  setAccessToken: accessToken => dispatch(setAccessToken(accessToken))
+})
+
+
+class App extends React.Component {
 
   constructor(){
     super();
@@ -8,7 +22,9 @@ export default class App extends React.Component {
     // console.log(params);
     const token = params.access_token
     if(token){
-      spotifyApi.setAccessToken(token)
+      // this.props.setAccessToken(token)
+      debugger
+      console.log('toekn?')
     }
 
 
@@ -91,15 +107,7 @@ export default class App extends React.Component {
   }
   
   getMyTopTracks () {
-    spotifyApi.getMyTopTracks({offset: this.state.topTracks.length}).then(res => {
-      // let tops = [];
-      // for (let i=0; i < res.items.length; i++) {
-      //   let play = {}
-        
-      // }
-      // this.setState({
-      //   topTracks: tops
-      //   })
+    spotifyApi.getMyTopTracks({limit: 50}).then(res => {
       let newTops = []
       let trackIds = []
       res.items.forEach(item => {
@@ -127,7 +135,6 @@ export default class App extends React.Component {
         let newState = Object.assign({}, this.state.features[key], ret)
         console.log(key)
         this.setState({features: {[key]: newState}})
-        // debugger
         console.log(this.state.features)
         console.log(this.state.topTracks)
       }).catch(err => {
@@ -195,3 +202,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+
+// export default connect(mSTP, mDTP)(App)
+export default App;
