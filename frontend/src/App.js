@@ -1,6 +1,5 @@
 import React from 'react';
-import SpotifyWebApi from 'spotify-web-api-js';
-const spotifyApi = new SpotifyWebApi();
+import spotifyApi from '../src/util/spotify_api_util'
 export default class App extends React.Component {
 
   constructor(){
@@ -128,7 +127,7 @@ export default class App extends React.Component {
         let newState = Object.assign({}, this.state.features[key], ret)
         console.log(key)
         this.setState({features: {[key]: newState}})
-        debugger
+        // debugger
         console.log(this.state.features)
         console.log(this.state.topTracks)
       }).catch(err => {
@@ -187,8 +186,6 @@ export default class App extends React.Component {
           <div className="center cf">
             <h2> Recently Played </h2>
             
-            <canvas id="myChart" width="400" height="400"></canvas>
-
           {recent}
           </div>
         </div>
