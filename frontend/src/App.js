@@ -2,17 +2,20 @@ import React from 'react';
 import spotifyApi from '../src/util/spotify_api_util';
 import {setAccessToken} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
+import DataSelector from '../src/components/dataSelector/dataSelector'
 
 const mSTP = state => {
   return ({
     state
-  })}
+  })
+}
 
 const mDTP = dispatch => {
 
   return ({
   setAccessToken: accessToken => dispatch(setAccessToken(accessToken))
-})}
+})
+}
 
 
 class App extends React.Component {
@@ -165,6 +168,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <a href='http://localhost:8000/login' > Login to Spotify </a>
+        <DataSelector />
         <div>
           Now Playing: {this.state.nowPlaying.name}
         </div>
