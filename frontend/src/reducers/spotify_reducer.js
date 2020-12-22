@@ -1,10 +1,10 @@
-export default (state, action) => {
+import {RECEIVE_FEATURES} from '../actions/spotify_actions'
+
+export default (state = {}, action) => {
     switch (action.type) {
-        case value:
-            
-            break;
-    
+        case RECEIVE_FEATURES:
+            return action.features;
         default:
-            break;
+            return state;
     }
 }
