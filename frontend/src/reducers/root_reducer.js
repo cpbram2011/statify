@@ -1,20 +1,11 @@
+import {combineReducers} from 'redux';
 
-import { LOGIN } from '../actions/spotify_actions';
+import session from './session_reducer';
+import entities from './spotify_reducer';
 
-const initialState = {
-isAuthenticated: false,
-accessToken: {}
-};
+const RootReducer = combineReducers({
+  session,
+  entities
+})
 
-export default function(state = initialState, action) {
-switch (action.type) {
-  case LOGIN:
-    return {
-      isAuthenticated: true,
-      accessToken: action.accessToken
-    }
-
-  default:
- return state;
-}
-}
+export default RootReducer

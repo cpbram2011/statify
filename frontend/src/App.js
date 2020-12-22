@@ -4,27 +4,25 @@ import {setAccessToken} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 
 const mSTP = state => {
-  
   return ({
-  isAuthenticated: state.isAuthenticated,
-})}
+    state
+  })}
 
-const mDTP = dispatch => ({
+const mDTP = dispatch => {
+
+  return ({
   setAccessToken: accessToken => dispatch(setAccessToken(accessToken))
-})
+})}
 
 
 class App extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     const params = this.getHashParams();
-    // console.log(params);
     const token = params.access_token
     if(token){
-      // this.props.setAccessToken(token)
-      debugger
-      console.log('toekn?')
+      this.props.setAccessToken(token)
     }
 
 
@@ -204,5 +202,5 @@ class App extends React.Component {
 }
 
 
-// export default connect(mSTP, mDTP)(App)
-export default App;
+export default connect(mSTP, mDTP)(App)
+

@@ -5,14 +5,14 @@ export const LOGIN = "LOGIN";
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 
 
-export const login = accessToken => ({
+export const login = accessToken => {
+    return ({
     type: LOGIN,
     accessToken
-});
+})};
 
 export const setAccessToken = accessToken => dispatch => {
-    console.log(accessToken)
-    return (
-    spotifyApi.setAccessToken(accessToken).then(res => dispatch(login(accessToken)))
-)}
+    spotifyApi.setAccessToken(accessToken)
+    dispatch(login(accessToken))
+}
 

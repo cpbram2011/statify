@@ -13,7 +13,8 @@ const { logger } = require("redux-logger");
 middlewares.push(logger);
 
 
-const configureStore = (preloadedState = {}) =>{
-  createStore(rootReducer, preloadedState, applyMiddleware(...middlewares));
-}
-export default configureStore;
+const configureStore = (preloadedState = {}) =>
+   createStore(rootReducer, preloadedState, applyMiddleware(...middlewares));
+
+
+export default configureStore
