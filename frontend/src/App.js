@@ -3,6 +3,7 @@ import spotifyApi from '../src/util/spotify_api_util';
 import {setAccessToken} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from '../src/components/dataSelector/dataSelector'
+import Graph from '../src/components/graph/graph';
 
 const mSTP = state => {
   return ({
@@ -169,6 +170,7 @@ class App extends React.Component {
       <div className="App">
         <a href='http://localhost:8000/login' > Login to Spotify </a>
         <DataSelector />
+        <Graph />
         <div>
           Now Playing: {this.state.nowPlaying.name}
         </div>
