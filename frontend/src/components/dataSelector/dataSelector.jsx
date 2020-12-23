@@ -1,11 +1,17 @@
 import React from 'react';
 import spotifyApi from '../../util/spotify_api_util'
-import {receiveFeatures} from '../../actions/spotify_actions'
+import {requestTopTracks, requestMostRecent, requestMySaved} from '../../actions/spotify_actions'
 import {connect} from 'react-redux';
+import Graph from '../graph/graph';
+
 
 const mDTP = dispatch => ({
-    receiveFeatures: data => dispatch(receiveFeatures(data))
+    requestTopTracks: data => dispatch(requestTopTracks(data)),
+    requestMostRecent: data => dispatch(requestMostRecent(data)),
+    requestMySaved: data => dispatch(requestMySaved(data)),
+
 });
+
 
 class DataSelector extends React.Component {
 
@@ -14,7 +20,8 @@ class DataSelector extends React.Component {
         this.state = {
             data: 'recent',
             time: 'medium_term'
-        }
+        };
+        this.getData = this.getData.bind(this);
     }
 
     dataChange (e) {
@@ -24,21 +31,20 @@ class DataSelector extends React.Component {
         this.setState({time: e.target.value})
     }
 
-    getData (e) {
-        e.preventDefault()
+    getData () {
         switch (this.state.data) {
             case 'recent':
                 console.log('looking for recent data')
-                spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
-                  .then(res => {
-                      this.props.receiveFeatures(res.items)
-                  })
+                this.props.requestMostRecent(this.state.time)
+                
                 break;
             case 'top':
                 console.log('looking for top data')
+                this.props.requestTopTracks(this.state.time)
                 break;
-            case 'liked':
-                console.log('looking for liked data')
+                case 'liked':
+                    console.log('looking for liked data')
+                    this.props.requestMySaved(this.state.time)
                 break;
         
             default:
@@ -47,9 +53,10 @@ class DataSelector extends React.Component {
     }
 
     render () {
+        this.getData()
         return (
             <div className='data-selector'> 
-                <p>Select Your Data</p>
+                <p>Based on your</p>
                 <select onChange={this.dataChange.bind(this)} value={this.state.data}>
                     <option value="top">Top Tracks</option>
                     <option value="recent">Most Recent Tracks</option>
@@ -57,14 +64,16 @@ class DataSelector extends React.Component {
                 </select>
 
                 {this.state.data === 'top' ? (
+                    <>
+                    <p>based on the past </p>
                     <select onChange={this.timeChange.bind(this)} value={this.state.time}>
-                    <option value="short_term">Short Term</option>
-                    <option value="medium_term">Medium Term</option>
-                    <option value="long_term">Long Term</option>
+                    <option value="short_term">4 weeks</option>
+                    <option value="medium_term">6 months</option>
+                    <option value="long_term">All time</option>
                     </select>
+                    </>
                 ) : null}
-
-                <button onClick={this.getData.bind(this)}>Get Data</button>
+                <Graph />
             </div>
         )
     }
