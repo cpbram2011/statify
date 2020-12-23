@@ -2,6 +2,8 @@ import React from 'react';
 import spotifyApi from '../../util/spotify_api_util'
 import {requestTopTracks, requestMostRecent, requestMySaved} from '../../actions/spotify_actions'
 import {connect} from 'react-redux';
+import Graph from '../graph/graph';
+
 
 const mDTP = dispatch => ({
     requestTopTracks: data => dispatch(requestTopTracks(data)),
@@ -71,8 +73,7 @@ class DataSelector extends React.Component {
                     </select>
                     </>
                 ) : null}
-
-                <button onClick={this.getData.bind(this)}>Get Data</button>
+                <Graph />
             </div>
         )
     }

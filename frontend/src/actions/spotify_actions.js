@@ -57,7 +57,7 @@ export const requestMostRecent = () => dispatch => {
 };
 
 export const requestMySaved = () => dispatch => {
-    spotifyApi.getMySavedTracks()
+    spotifyApi.getMySavedTracks({limit: 50})
       .then(res => {
         dispatch(receiveTracks(res.items));
         let trackIds = [];
