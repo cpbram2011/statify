@@ -3,6 +3,7 @@ import spotifyApi from '../src/util/spotify_api_util';
 import {setAccessToken} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from '../src/components/dataSelector/dataSelector'
+import Graph from '../src/components/graph/graph';
 
 const mSTP = state => {
   return ({

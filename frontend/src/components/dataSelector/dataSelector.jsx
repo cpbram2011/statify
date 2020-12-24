@@ -2,7 +2,7 @@ import React from 'react';
 import spotifyApi from '../../util/spotify_api_util'
 import {requestTopTracks, requestMostRecent, requestMySaved} from '../../actions/spotify_actions'
 import {connect} from 'react-redux';
-import Graph from '../graph/graph';
+import Graph from '../graph/graph_container';
 
 
 const mDTP = dispatch => ({

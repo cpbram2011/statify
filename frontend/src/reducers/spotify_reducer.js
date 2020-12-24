@@ -6,13 +6,14 @@ const initialState = {
     };
 
 export default (state = {}, action) => {
+    let newState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_FEATURES:
-            state.features = action.features
-            return state;
+            newState.features = action.features
+            return newState;
         case RECEIVE_TRACKS:
-            state.tracks = action.tracks
-            return state;
+            newState.tracks = action.tracks
+            return newState;
         default:
             return state;
     }
