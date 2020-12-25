@@ -11,16 +11,45 @@ export default class Graph extends React.Component {
     render ()  {
         if (!this.props.data) return null;
         let keys = [0,0,0,0,0,0,0,0,0,0,0,0];
-        let modes = [0,0]
+        let modes = [0,0];
+        let tempos = {
+            40: 0,
+            50: 0,
+            60: 0,
+            70: 0,
+            80: 0,
+            90: 0,
+            100: 0,
+            110: 0,
+            120: 0,
+            130: 0,
+            140: 0,
+            150: 0,
+            160: 0,
+            170: 0,
+            180: 0,
+            190: 0,
+            200: 0,
+            210: 0,
+            220: 0,
+        };
         this.props.data.forEach(x => {
             if (!x) {
             } else {
                 keys[x.key] += 1;
                 modes[x.mode] += 1;
+                let tempo = Math.floor(x.tempo);
+                tempo -= (tempo % 10)
+                tempos[tempo] += 1
             }
         });
-        window.keys = keys;
-        window.modes = modes;
+        const tempoData = {
+            labels: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
+            datasets: [{
+                data: Object.values(tempos),
+                backgroundColor: '#e6194B'
+            }]
+        }
         const modeData = {
             labels: ['Major', 'Minor'],
             datasets: [{
@@ -31,7 +60,7 @@ export default class Graph extends React.Component {
                 ]
             }]
         }
-        const modeOptions = {
+        const barOptions = {
             scales: {
                 yAxes: [{
                     ticks: {
@@ -71,8 +100,13 @@ export default class Graph extends React.Component {
                 />
             <Bar
                 data={modeData}
-                options={modeOptions}
+                options={barOptions}
                 />
+            <Bar
+                data={tempoData}
+                options={barOptions}
+                />
+
             </>
         )
     }
