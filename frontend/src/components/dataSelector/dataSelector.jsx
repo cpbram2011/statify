@@ -1,19 +1,8 @@
 import React from 'react';
 import spotifyApi from '../../util/spotify_api_util'
-import {requestTopTracks, requestMostRecent, requestMySaved} from '../../actions/spotify_actions'
-import {connect} from 'react-redux';
 import Graph from '../graph/graph_container';
 
-
-const mDTP = dispatch => ({
-    requestTopTracks: data => dispatch(requestTopTracks(data)),
-    requestMostRecent: data => dispatch(requestMostRecent(data)),
-    requestMySaved: data => dispatch(requestMySaved(data)),
-
-});
-
-
-class DataSelector extends React.Component {
+export default class DataSelector extends React.Component {
 
     constructor(props) {
         super(props)
@@ -78,5 +67,3 @@ class DataSelector extends React.Component {
         )
     }
 }
-
-export default connect(null, mDTP)(DataSelector)

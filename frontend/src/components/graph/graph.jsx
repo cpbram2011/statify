@@ -12,19 +12,17 @@ export default class Graph extends React.Component {
 
     render ()  {
         if (!this.props.data) return null;
-        let keys = [0,0,0,0,0,0,0,0,0,0,0,0]
+        let keys = [0,0,0,0,0,0,0,0,0,0,0,0];
         this.props.data.forEach(x => {
             if (!x) {
             } else {
-                keys[x.key] += 1
-            };
+                keys[x.key] += 1;
+            }
         });
-
-        var ctx = document.getElementById('Chart');
-        if (myChart != undefined) {
-            // TODO naive failed solution
-            myChart.destroy();}
-        var myChart = new Chart(ctx, { //Mode
+        window.keys = keys;
+        var ctx = document.getElementById('Chart').getContext("2d");
+        
+        const chartParams = { //Mode
             type: 'doughnut',
             data: {
                 labels: ['C', 'Db', 'D', 'Eb', 'E', 'F','Gb','G','Ab','A','Bb','B'],
@@ -49,7 +47,10 @@ export default class Graph extends React.Component {
                 }]
             },
             options: {}
-        });
+        };
+        var myChart = new Chart(ctx, chartParams);
+        myChart.destroy()
+        myChart = new Chart(ctx, chartParams);
 
         return (
             <>
