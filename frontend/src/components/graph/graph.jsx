@@ -1,5 +1,5 @@
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Bar } from 'react-chartjs-2';
  
 export default class Graph extends React.Component {
     constructor(props){
@@ -16,11 +16,31 @@ export default class Graph extends React.Component {
             if (!x) {
             } else {
                 keys[x.key] += 1;
-                
+                modes[x.mode] += 1;
             }
         });
         window.keys = keys;
-        const mydata = {
+        window.modes = modes;
+        const modeData = {
+            labels: ['Major', 'Minor'],
+            datasets: [{
+                data: modes,
+                backgroundColor: [
+                    '#e6194B',
+                    '#4363d8',
+                ]
+            }]
+        }
+        const modeOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+        const keyData = {
             labels: ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'],
             datasets: [{
                 data: keys,
@@ -44,10 +64,14 @@ export default class Graph extends React.Component {
         return (
             <>
             <Doughnut
-                data={mydata}
-                width={100}
+                data={keyData}
+                width={50}
                 height={50}
                 options={{ maintainAspectRatio: false }}
+                />
+            <Bar
+                data={modeData}
+                options={modeOptions}
                 />
             </>
         )
