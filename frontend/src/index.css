@@ -14,7 +14,9 @@ code {
 
 
 
-div.chartjs-render-monitor {
-  height: 100px;
-  width: 100px;
+
+canvas {
+  height: 500px !important;
+  width: 500px !important;
+  float: right;
 }

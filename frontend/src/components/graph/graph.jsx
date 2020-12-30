@@ -67,7 +67,9 @@ export default class Graph extends React.Component {
                         beginAtZero: true
                     }
                 }]
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: true,
         };
         const keyData = {
             labels: ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'],
