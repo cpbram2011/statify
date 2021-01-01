@@ -13,10 +13,3 @@ code {
 }
 
 
-
-
-canvas {
-  height: 500px !important;
-  width: 500px !important;
-  float: right;
-}
