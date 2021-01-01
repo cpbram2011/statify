@@ -94,12 +94,13 @@ export default class Graph extends React.Component {
 
         return (
             <>
+            <div id="donut">
             <Doughnut
                 data={keyData}
-                width={50}
-                height={50}
-                options={{ maintainAspectRatio: false }}
+                options={{ maintainAspectRatio: true,
+                responsive: true }}
                 />
+            </div>
             <Bar
                 data={modeData}
                 options={barOptions}

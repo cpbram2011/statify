@@ -4,6 +4,7 @@ import {setAccessToken} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from '../src/components/dataSelector/dataSelector_container'
 import Graph from '../src/components/graph/graph';
+import Axios from 'axios';
 
 const mSTP = state => {
   return ({
@@ -25,18 +26,21 @@ class App extends React.Component {
     super(props);
     const params = this.getHashParams();
     const token = params.access_token
+    console.log(params.refresh_token) // <-
     if(token){
       this.props.setAccessToken(token)
     }
 
 
     this.state = {
+      params: params,
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       recentlyPlayed: [],
       topTracks: [],
       features: {}
     }
+    this.startCycle = this.startCycle.bind(this)
 
   }
   getHashParams() {
@@ -50,7 +54,7 @@ class App extends React.Component {
       e = r.exec(q);
     }
     
-    // console.log(hashParams)
+    console.log(hashParams)
     return hashParams;
   }
 
@@ -145,8 +149,36 @@ class App extends React.Component {
     
   }
 
+  startCycle () {
+    const refresh = this.state.params.refresh_token
+      setInterval(() => {
+        Axios.get('http://localhost:8000/refresh_token', {
+
+          params: {
+            refresh_token: refresh
+          }
+        }).then(function (data) {
+          debugger
+          // access_token = data.access_token;
+          // oauthPlaceholder.innerHTML = oauthTemplate({
+
+          //   access_token: access_token,
+          //   refresh_token: refresh_token
+          // });
+          // window.data = data;
+          console.log(data)
+
+        }).catch(err => console.log(err));
 
 
+      }, 1000)
+      
+  }
+    
+
+  
+
+  
   render() {
     let recent
     if(this.state.recentlyPlayed.length > 0){
@@ -166,9 +198,14 @@ class App extends React.Component {
     }
     // console.log(this.state.recentlyPlayed)
     // console.log(recent)
+
+
+
+
     return (
       <div className="App">
         <a href='http://localhost:8000/login' > Login to Spotify </a>
+        <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>
         <DataSelector />
         <div>
           Now Playing: {this.state.nowPlaying.name}

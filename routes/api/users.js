@@ -112,10 +112,13 @@ router.get('/callback', function (req, res) {
         });
     }
 });
-
+router.get('/test', (req, res) => {
+    res.send('test complete')
+})
 router.get('/refresh_token', function (req, res) {
 
     // requesting access token from refresh token
+    
     var refresh_token = req.query.refresh_token;
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
@@ -130,8 +133,10 @@ router.get('/refresh_token', function (req, res) {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             var access_token = body.access_token;
+            var refresh_token = body
             res.send({
-                'access_token': access_token
+                'access_token': access_token,
+               
             });
         }
     });

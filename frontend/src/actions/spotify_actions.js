@@ -12,6 +12,7 @@ export const login = accessToken => {
     type: LOGIN,
     accessToken
 })};
+
 export const receiveFeatures = features => {
     return ({
     type: RECEIVE_FEATURES,
