@@ -42,6 +42,7 @@ class App extends React.Component {
     }
     this.startCycle = this.startCycle.bind(this)
 
+    window.state = this.state;
   }
   getHashParams() {
     var hashParams = {};
@@ -112,66 +113,22 @@ class App extends React.Component {
       })
   }
   
-  getMyTopTracks () {
-    spotifyApi.getMyTopTracks({limit: 50}).then(res => {
-      let newTops = []
-      let trackIds = []
-      res.items.forEach(item => {
-        trackIds.push(item.id)
-        newTops.push(item.name)
-        
-      })
-      this.setState({topTracks: this.state.topTracks.concat(newTops)})
-      this.getFeatures('top', trackIds)
-
-    })
-      .catch(err =>{ 
-        console.log(err)})
-    
-  }
-
-  getFeatures(key, trackIds) {
-    let ret = {}
-    spotifyApi.getAudioFeaturesForTracks(trackIds)
-      .then(res => {
-        let currentLength = this.state.topTracks.length - trackIds.length
-        res.audio_features.forEach((item, i) => {
-          ret[currentLength + i+1] = item
-        })
-        let newState = Object.assign({}, this.state.features[key], ret)
-        console.log(key)
-        this.setState({features: {[key]: newState}})
-        console.log(this.state.features)
-        console.log(this.state.topTracks)
-      }).catch(err => {
-        console.log(err)
-    })
-    
-  }
 
   startCycle () {
-    const refresh = this.state.params.refresh_token
-      setInterval(() => {
-        Axios.get('http://localhost:8000/refresh_token', {
-
-          params: {
-            refresh_token: refresh
-          }
-        }).then(function (data) {
-          debugger
-          // access_token = data.access_token;
-          // oauthPlaceholder.innerHTML = oauthTemplate({
-
-          //   access_token: access_token,
-          //   refresh_token: refresh_token
-          // });
-          // window.data = data;
-          console.log(data)
-
-        }).catch(err => console.log(err));
+    const refresh = this.state.params.refresh_token;
+    const setAuthToken = this.props.setAccessToken;
+    setTimeout(() => {
+      Axios.get('http://localhost:8000/refresh_token', {
+        params: {
+          refresh_token: refresh
+        }
+      }).then(function ({data}) {
+        debugger
+        setAuthToken(data.access_token)
+      }).catch(err => console.log(err));
 
 
-      }, 1000)
+    }, 1000)
       
   }
     
