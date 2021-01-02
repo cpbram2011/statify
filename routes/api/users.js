@@ -119,8 +119,7 @@ router.get('/refresh_token', function (req, res) {
 
     // requesting access token from refresh token
     
-    // var refresh_token = req.query.refresh_token;  //TODO: remove testing refresh_token
-    var refresh_token = "AQBzRHl6HRyOgqH4Uf4e0vo8O4eqwFkwdkVJ86gJVbBzc9YsDR7d8mQj7C-SMqya2op1zL8RhVJ3Ofwj-nlS-rkE3HGcMH8vkChXkDuQTuhlRdEN276EJbgCcfOHSYsPXdc";
+    var refresh_token = req.query.refresh_token;  
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
