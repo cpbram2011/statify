@@ -70,6 +70,9 @@ export default class Graph extends React.Component {
             },
             responsive: true,
             maintainAspectRatio: true,
+            legend: {
+                display: false   
+                }
         };
         const keyData = {
             labels: ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'],
@@ -97,8 +100,15 @@ export default class Graph extends React.Component {
             <div id="donut">
             <Doughnut
                 data={keyData}
+                height={null}
+                width={null}
                 options={{ maintainAspectRatio: true,
-                responsive: true }}
+                responsive: false,
+                
+                 legend: {
+                 display: false   
+                 }
+                }}
                 />
             </div>
             <Bar
