@@ -2,6 +2,7 @@
 import spotifyApi from '../util/spotify_api_util'
 
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_FEATURES = "RECEIVE_FEATURES";
 export const RECCEIVE_TRACKS = "RECCEIVE_TRACKS";
@@ -12,6 +13,10 @@ export const login = accessToken => {
     type: LOGIN,
     accessToken
 })};
+
+export const logout = () => ({
+  type: LOGOUT,
+})
 
 export const receiveFeatures = features => {
     return ({

@@ -44,7 +44,8 @@ export default class DataSelector extends React.Component {
     render () {
         this.getData()
         return (
-            <div className='data-selector'> 
+            <>
+            <div className='dataSelector'> 
                 <p>Based on your</p>
                 <select onChange={this.dataChange.bind(this)} value={this.state.data}>
                     <option value="top">Top Tracks</option>
@@ -62,8 +63,9 @@ export default class DataSelector extends React.Component {
                     </select>
                     </>
                 ) : null}
-                <Graph />
-            </div>
+
+                </div>
+            </>
         )
     }
 }

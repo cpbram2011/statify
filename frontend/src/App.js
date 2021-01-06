@@ -1,21 +1,23 @@
 import React from 'react';
 import spotifyApi from '../src/util/spotify_api_util';
-import {setAccessToken} from '../src/actions/spotify_actions'
+import {setAccessToken, logout} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from '../src/components/dataSelector/dataSelector_container'
-import Graph from '../src/components/graph/graph';
+import Graph from '../src/components/graph/graph_container';
 import Axios from 'axios';
+import Splash from './components/splash/splash';
 
 const mSTP = state => {
   return ({
-    state
+    loggedIn: state.session.isAuthenticated
   })
 }
 
 const mDTP = dispatch => {
 
   return ({
-  setAccessToken: accessToken => dispatch(setAccessToken(accessToken))
+  setAccessToken: accessToken => dispatch(setAccessToken(accessToken)),
+  logout: () => dispatch(logout())
 })
 }
 
@@ -59,60 +61,6 @@ class App extends React.Component {
     return hashParams;
   }
 
-  getNowPlaying(){
-    spotifyApi.getMyCurrentPlayingTrack()
-      .then((response) => {
-        
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[0].url
-          }
-        })
-      })
-  }
-  getRecentlyPlayed(){
-    let unix_timestamp = 1484111023500
-    var date = new Date(unix_timestamp * 1000);
-    // Hours part from the timestamp
-    // Year
-    var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var year = date.getFullYear();
-
-    // Month
-    var month = months_arr[date.getMonth()];
-
-    // Day
-    var day = date.getDate();
-
-    var hours = date.getHours();
-    // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
-    // Seconds part from the timestamp
-    var seconds = "0" + date.getSeconds();
-
-    // Will display time in 10:30:23 format
-    var formattedTime = year + "," + month + " " + day + " " + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    
-    // console.log(formattedTime);
-    spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 })
-      .then((response) => {
-        let recent = []
-        
-        for(let i = 0; i < response.items.length; i ++){
-          let play = {}
-          play.albumArt = response.items[i].track.album.images[0].url
-          play.title = response.items[i].track.name
-          play.album = response.items[i].track.album.name
-          play.artist = response.items[i].track.artists[0].name
-          recent.push(play)
-        }
-        this.setState({
-          recentlyPlayed: recent
-        })
-      })
-  }
-  
 
   startCycle () {
     const refresh = this.state.params.refresh_token;
@@ -126,8 +74,7 @@ class App extends React.Component {
         debugger
         setAuthToken(data.access_token)
       }).catch(err => console.log(err));
-
-
+      
     }, 1000)
       
   }
@@ -137,64 +84,18 @@ class App extends React.Component {
 
   
   render() {
-    let recent
-    if(this.state.recentlyPlayed.length > 0){
-        let i = 0
-        recent = this.state.recentlyPlayed.map(ele => {
-          return (
-            <div key={i++} className=" cf">
-              <h3>{ele.album}</h3>
-              <img src={ele.albumArt} style={{ height: 150 }} />
-              <br/>
-              "{ele.title}"
-              <br/>
-              {ele.artist}
-            </div>
-          )
-        })
-    }
-    // console.log(this.state.recentlyPlayed)
-    // console.log(recent)
-
+    
+    if (!this.props.loggedIn) return <Splash/>
 
 
 
     return (
       <div className="App">
-        <a href='http://localhost:8000/login' > Login to Spotify </a>
-        <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>
+
+        <button onClick={() => this.props.logout()}> Logout</button>      
+        <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>      
         <DataSelector />
-        <div>
-          Now Playing: {this.state.nowPlaying.name}
-        </div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
-        </div>
-        { this.state.loggedIn &&
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
-        }
-        <div>
-          {/* vvv ? */}
-            {this.state.loggedIn &&
-            <>
-              <button onClick={() => this.getRecentlyPlayed()}>
-                Check Recent Plays
-          </button>
-              <button onClick={() => this.getMyTopTracks()}>
-                Check Top Tracks
-          </button>
-          </>
-            }
-          <div className="center cf">
-            <h2> Recently Played </h2>
-            
-          {recent}
-          </div>
-        </div>
-        
-        
+        <Graph/>
       </div>
     );
   }

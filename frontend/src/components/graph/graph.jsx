@@ -6,11 +6,10 @@ export default class Graph extends React.Component {
         super(props);
     }
 
-
-
     render ()  {
         if (!this.props.data) return null;
         let keys = [0,0,0,0,0,0,0,0,0,0,0,0];
+        const keyArr = ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'];
         let modes = [0,0];
         let tempos = {
             40: 0,
@@ -33,6 +32,8 @@ export default class Graph extends React.Component {
             210: 0,
             220: 0,
         };
+
+        //main iterator
         this.props.data.forEach(x => {
             if (!x) {
             } else {
@@ -68,14 +69,15 @@ export default class Graph extends React.Component {
                     }
                 }]
             },
-            responsive: true,
+            responsive: false,
+            
             maintainAspectRatio: true,
             legend: {
                 display: false   
                 }
         };
         const keyData = {
-            labels: ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'],
+            labels: keyArr,
             datasets: [{
                 data: keys,
                 backgroundColor: [
@@ -95,13 +97,50 @@ export default class Graph extends React.Component {
             }]
         };
 
+        const findIndexOfGreatest = (array) => {
+            var greatest;
+            var indexOfGreatest;
+            for (var i = 0; i < array.length; i++) {
+              if (!greatest || array[i] > greatest) {
+                greatest = array[i];
+                indexOfGreatest = i;
+              }
+            }
+            return indexOfGreatest;
+          }
+
+        const favKeyIndex = findIndexOfGreatest(keys)
+        const favKey = keyArr[favKeyIndex]
+        let faveMode
+        if (modes[0] === modes[1]){
+            faveMode= 'You like Major and Minor Keys equally '
+        } else if (modes[0] < modes[1]) {
+            faveMode= 'You prefer Minor Keys'
+        } else {
+            faveMode= 'You prefer Major Keys'
+        }
+        const favTempo = Object.keys(tempos).reduce((a, b)=>{ return tempos[a] > tempos[b] ? a : b });
+        let speed;
+        if (favTempo < 71) {
+            speed = 'slow';
+        } else if (favTempo < 121) {
+            speed = 'walking pace';
+        } else if (favTempo < 180) {
+            speed = 'fast';
+        } else {
+            speed = 'very fast';
+        }
+
+
+
         return (
-            <>
+            <div className='graphContainer'>
             <div id="donut">
+                <p>Your favorite songs are in the key of {favKey}</p>
             <Doughnut
                 data={keyData}
-                height={null}
-                width={null}
+                height={400}
+                width={400}
                 options={{ maintainAspectRatio: true,
                 responsive: false,
                 
@@ -111,16 +150,28 @@ export default class Graph extends React.Component {
                 }}
                 />
             </div>
-            <Bar
-                data={modeData}
-                options={barOptions}
-                />
-            <Bar
-                data={tempoData}
-                options={barOptions}
-                />
+            <div id='modeChart'>
+                {faveMode}
+                <Bar
+                height={400}
+                width={400}
+                    data={modeData}
+                    options={barOptions}
+                    />
 
-            </>
+            </div>
+            <div id='tempoChart'>
+                <p>You prefer {speed} music ({favTempo} bpm)</p>
+                <Bar
+                height={400}
+                width={400}
+                    data={tempoData}
+                    options={barOptions}
+                    />
+
+            </div>
+
+            </div>
         )
     }
 }

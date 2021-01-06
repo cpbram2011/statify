@@ -1,5 +1,5 @@
 
-import { LOGIN } from '../actions/spotify_actions';
+import { LOGIN, LOGOUT } from '../actions/spotify_actions';
 
 const initialState = {
 isAuthenticated: false,
@@ -13,6 +13,9 @@ switch (action.type) {
       isAuthenticated: true,
       accessToken: action.accessToken
     }
+  
+    case LOGOUT:
+      return initialState
 
   default:
     return state;

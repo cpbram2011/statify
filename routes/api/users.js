@@ -125,7 +125,7 @@ router.get('/refresh_token', function (req, res) {
         headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
         form: {
             grant_type: 'refresh_token',
-            refresh_token: refresh_token
+            refresh_token: "AQBzRHl6HRyOgqH4Uf4e0vo8O4eqwFkwdkVJ86gJVbBzc9YsDR7d8mQj7C-SMqya2op1zL8RhVJ3Ofwj-nlS-rkE3HGcMH8vkChXkDuQTuhlRdEN276EJbgCcfOHSYsPXdc"
         },
         json: true
     };
