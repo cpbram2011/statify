@@ -61,7 +61,7 @@ export default class DataSelector extends React.Component {
                     <option value="top">Top Tracks</option>
                     <option value="recent">Most Recent Tracks</option>
                     <option value="liked">Liked Tracks</option>
-                    <option value="playlist" disabled>— Playlists</option>
+                    <option value="playlist" disabled>— Playlists —</option>
                     {playlistOptions}
                 </select>
                 {this.state.data.length > 9 ? (
