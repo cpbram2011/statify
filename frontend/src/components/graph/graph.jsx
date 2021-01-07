@@ -2,38 +2,34 @@ import React from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
  
 export default class Graph extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
 
     
 
     render ()  {
         if (!this.props.data) return null;
+
+
         let keys = [0,0,0,0,0,0,0,0,0,0,0,0];
-        const keyArr = ['Ab','A','Bb','B','C','Db','D','Eb','E','F','Gb','G'];
+        const keyArr = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B',];
         let modes = [0,0];
-        let tempos = {
-            40: 0,
-            50: 0,
-            60: 0,
-            70: 0,
-            80: 0,
-            90: 0,
-            100: 0,
-            110: 0,
-            120: 0,
-            130: 0,
-            140: 0,
-            150: 0,
-            160: 0,
-            170: 0,
-            180: 0,
-            190: 0,
-            200: 0,
-            210: 0,
-            220: 0,
-        };
+        let tempos = {};
+        for (let i = 40; i < 241; i += 10) tempos[i] = 0;
+
+
+        //
+        let acousticness = []
+        let danceability = []
+        let energy = []
+        let instrumentalness = []
+        let liveness = []
+        let speechiness = []
+        let valence = []
+
+
+        let loudness = [] //roughly -30 to 0
+        let duaration = [] //in ms
+
 
         //main iterator
         this.props.data.forEach(x => {
@@ -46,39 +42,8 @@ export default class Graph extends React.Component {
                 tempos[tempo] += 1
             }
         });
-        const tempoData = {
-            labels: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
-            datasets: [{
-                data: Object.values(tempos),
-                backgroundColor: '#e6194B'
-            }]
-        }
-        const modeData = {
-            labels: ['Major', 'Minor'],
-            datasets: [{
-                data: modes,
-                backgroundColor: [
-                    '#e6194B',
-                    '#4363d8',
-                ]
-            }]
-        }
-        const barOptions = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        suggestedMax: 10
-                    }
-                }]
-            },
-            responsive: false,
-            
-            maintainAspectRatio: true,
-            legend: {
-                display: false   
-                }
-        };
+
+        //graph datasets
         const keyData = {
             labels: keyArr,
             datasets: [{
@@ -100,6 +65,45 @@ export default class Graph extends React.Component {
             }]
         };
 
+        const modeData = {
+            labels: ['Major', 'Minor'],
+            datasets: [{
+                data: modes,
+                backgroundColor: [
+                    '#e6194B',
+                    '#4363d8',
+                ]
+            }]
+        };
+
+        const tempoData = {
+            labels: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
+            datasets: [{
+                data: Object.values(tempos),
+                backgroundColor: '#e6194B'
+            }]
+        };
+
+        //graph option objects
+        const barOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 10
+                    }
+                }]
+            },
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: {
+                display: false   
+                }
+        };
+        
+
+
+        //get average modes
         const findIndexOfGreatest = (array) => {
             var greatest;
             var indexOfGreatest;
@@ -133,8 +137,6 @@ export default class Graph extends React.Component {
         } else {
             speed = 'very fast';
         }
-
-
 
         return (
             <>
