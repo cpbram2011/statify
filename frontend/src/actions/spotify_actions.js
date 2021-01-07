@@ -45,7 +45,7 @@ export const setAccessToken = accessToken => dispatch => {
 }
 
 export const requestPlaylists = () => dispatch => {
-  spotifyApi.getUserPlaylists()
+  spotifyApi.getUserPlaylists({limit: 50})
     .then(res => {
       let playlists = {}
       res.items.forEach(x => {

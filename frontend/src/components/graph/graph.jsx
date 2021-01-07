@@ -75,17 +75,45 @@ export default class Graph extends React.Component {
                 ]
             }]
         };
+        
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d')
+        canvas.width = 300;
+        canvas.height = 300;
+        var gradient = context.createLinearGradient(0, 0, 300, 0);
+        gradient.addColorStop(0, "rgb(0, 77, 255)");
+        gradient.addColorStop(0.5505050505050505, "rgb(114, 255, 86)");
+        gradient.addColorStop(1, "rgb(255, 20, 20)");
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, 300, 300);
+
 
         const tempoData = {
             labels: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
             datasets: [{
                 data: Object.values(tempos),
-                backgroundColor: '#e6194B'
+                backgroundColor: gradient
             }]
         };
 
         //graph option objects
-        const barOptions = {
+        const modeOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 10
+                    }
+                }]
+            },
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: {
+                display: false   
+                }
+        };
+
+        const tempoOptions = {
             scales: {
                 yAxes: [{
                     ticks: {
@@ -101,7 +129,6 @@ export default class Graph extends React.Component {
                 }
         };
         
-
 
         //get average modes
         const findIndexOfGreatest = (array) => {
@@ -162,7 +189,7 @@ export default class Graph extends React.Component {
                 height={400}
                 width={400}
                     data={modeData}
-                    options={barOptions}
+                    options={modeOptions}
                     />
 
             </div>
@@ -172,7 +199,7 @@ export default class Graph extends React.Component {
                 height={400}
                 width={400}
                     data={tempoData}
-                    options={barOptions}
+                    options={tempoOptions}
                     />
 
             </div>
