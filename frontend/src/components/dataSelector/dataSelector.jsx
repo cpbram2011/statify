@@ -13,6 +13,10 @@ export default class DataSelector extends React.Component {
         this.getData = this.getData.bind(this);
     }
 
+    componentDidMount () {
+        this.props.requestPlaylists()
+    }
+
     dataChange (e) {
         this.setState({data: e.target.value})
     }
@@ -43,6 +47,10 @@ export default class DataSelector extends React.Component {
 
     render () {
         this.getData()
+
+        const playlistOptions = Object.keys(this.props.playlists).map((k) => (
+            <option value={this.props.playlists[k]}>{k}</option>
+        ))
         return (
             <>
             <div className='dataSelector'> 
@@ -51,11 +59,15 @@ export default class DataSelector extends React.Component {
                     <option value="top">Top Tracks</option>
                     <option value="recent">Most Recent Tracks</option>
                     <option value="liked">Liked Tracks</option>
+                    <option value="playlist" disabled>— Playlists</option>
+                    {playlistOptions}
                 </select>
-
+                {this.state.data.length > 9 ? (
+                    <p>playlist</p>
+                ) : null }
                 {this.state.data === 'top' ? (
                     <>
-                    <p>based on the past </p>
+                    <p>from the past </p>
                     <select onChange={this.timeChange.bind(this)} value={this.state.time}>
                     <option value="short_term">4 weeks</option>
                     <option value="medium_term">6 months</option>

@@ -1,9 +1,11 @@
 
+import SpotifyWebApi from 'spotify-web-api-js';
 import spotifyApi from '../util/spotify_api_util'
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
+export const RECEIVE_PLAYLISTS = "RECEIVE_PLAYLISTS";
 export const RECEIVE_FEATURES = "RECEIVE_FEATURES";
 export const RECCEIVE_TRACKS = "RECCEIVE_TRACKS";
 
@@ -24,6 +26,12 @@ export const receiveFeatures = features => {
     features
 })};
 
+export const receivePlaylists = playlists => {
+    return ({
+    type: RECEIVE_PLAYLISTS,
+    playlists
+})};
+
 export const receiveTracks = tracks => {
     return ({
     type: RECEIVE_TRACKS,
@@ -32,8 +40,21 @@ export const receiveTracks = tracks => {
 
 export const setAccessToken = accessToken => dispatch => {
     spotifyApi.setAccessToken(accessToken)
+    
     dispatch(login(accessToken))
 }
+
+export const requestPlaylists = () => dispatch => {
+  spotifyApi.getUserPlaylists()
+    .then(res => {
+      let playlists = {}
+      res.items.forEach(x => {
+        playlists[x.name] = x.id
+      })
+      dispatch(receivePlaylists(playlists))
+    })
+}
+
 
 export const requestTopTracks = timeRange => dispatch => {
     spotifyApi.getMyTopTracks({limit: 50, time_range: timeRange})

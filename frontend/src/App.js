@@ -42,10 +42,11 @@ class App extends React.Component {
       topTracks: [],
       features: {}
     }
+    
     this.startCycle = this.startCycle.bind(this)
-
     window.state = this.state;
   }
+
   getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,

@@ -6,6 +6,8 @@ export default class Graph extends React.Component {
         super(props);
     }
 
+    
+
     render ()  {
         if (!this.props.data) return null;
         let keys = [0,0,0,0,0,0,0,0,0,0,0,0];
@@ -65,7 +67,8 @@ export default class Graph extends React.Component {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        suggestedMax: 10
                     }
                 }]
             },
@@ -134,7 +137,8 @@ export default class Graph extends React.Component {
 
 
         return (
-            <div className='graphContainer'>
+            <>
+        <div className='graphContainer'>
             <div id="donut">
                 <p>Your favorite songs are in the key of {favKey}</p>
             <Doughnut
@@ -170,8 +174,11 @@ export default class Graph extends React.Component {
                     />
 
             </div>
+            <br/>
 
-            </div>
+
+        </div>
+        </>
         )
     }
 }
