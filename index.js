@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 
 app.use(auth)
 
-app.get('/', (req, res) => {
-    res.send('nice job')
-})
+// app.get('/', (req, res) => {
+//     res.send('nice job')
+// })
 
 
 if (process.env.NODE_ENV === 'production') {
