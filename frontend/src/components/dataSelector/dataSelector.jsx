@@ -35,12 +35,13 @@ export default class DataSelector extends React.Component {
                 console.log('looking for top data')
                 this.props.requestTopTracks(this.state.time)
                 break;
-                case 'liked':
-                    console.log('looking for liked data')
-                    this.props.requestMySaved(this.state.time)
+            case 'liked':
+                console.log('looking for liked data')
+                this.props.requestMySaved(this.state.time)
                 break;
         
             default:
+                this.props.requestPlaylistItems(this.state.data)
                 break;
         }
     }
@@ -55,6 +56,7 @@ export default class DataSelector extends React.Component {
             <>
             <div className='dataSelector'> 
                 <p>Based on your</p>
+               
                 <select onChange={this.dataChange.bind(this)} value={this.state.data}>
                     <option value="top">Top Tracks</option>
                     <option value="recent">Most Recent Tracks</option>

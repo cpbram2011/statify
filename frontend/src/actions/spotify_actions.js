@@ -65,10 +65,19 @@ export const requestTopTracks = timeRange => dispatch => {
             trackIds.push(item.id)
         });
         dispatch(requestFeatures(trackIds))
-
-
-
       });
+}
+
+export const requestPlaylistItems = playlistId => dispatch => {
+  spotifyApi.getPlaylistTracks(playlistId)
+    .then(res => {
+      dispatch(receiveTracks(res.items));
+      let trackIds = [];
+      res.items.forEach(item => {
+          trackIds.push(item.track.id)
+      });
+      dispatch(requestFeatures(trackIds))
+    });
 }
 
 export const requestMostRecent = () => dispatch => {

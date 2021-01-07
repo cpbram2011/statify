@@ -1,4 +1,4 @@
-import {requestTopTracks, requestMostRecent, requestMySaved, requestPlaylists} from '../../actions/spotify_actions'
+import {requestTopTracks, requestMostRecent, requestMySaved, requestPlaylists, requestPlaylistItems} from '../../actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from './dataSelector';
 
@@ -11,6 +11,7 @@ const mDTP = dispatch => ({
     requestMostRecent: data => dispatch(requestMostRecent(data)),
     requestMySaved: data => dispatch(requestMySaved(data)),
     requestPlaylists: () => dispatch(requestPlaylists()),
+    requestPlaylistItems: (playlistId) => dispatch(requestPlaylistItems(playlistId)),
 });
 
 
