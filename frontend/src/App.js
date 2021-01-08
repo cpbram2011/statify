@@ -100,10 +100,16 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <div className='dropdown-parent'>
-          <img src={this.props.profpic} onClick={() => this.toggleDropdown()}></img>
-          <p onClick={() => this.toggleDropdown()}>
-            {this.props.username}</p>
+        <div className='navbar'>
+          <div className='left'>
+            <h1>Statify</h1>
+          </div>
+          <div className='right'> 
+            <img src={this.props.profpic} onClick={() => this.toggleDropdown()}></img>
+            <p onClick={() => this.toggleDropdown()}>
+            {this.props.username}
+            </p>
+          </div>
 
         </div>
 

@@ -49,30 +49,51 @@ code {
 
 /* Dropdown */
 
-.dropdown-parent {
+.navbar {
   display: flex;
-  width: 100vw;
+  height: 64px;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
   background-color: rgb(0, 0, 124);
+}
 
+.navbar .left {
+  margin-left: 20px;
+}
+
+.navbar .right {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.navbar .right:hover {
+  border: 0.5px solid white;
+}
+
+.navbar h1 {
+  color: white;
 }
 
 
-.dropdown-parent img {
+.navbar img {
   height: 5vh;
   cursor: pointer;
   border-radius: 100%;
 }
 
-.dropdown-parent p {
+.navbar p {
   cursor: pointer;
-  margin-left: 10px;
-  color: white
+  margin: 0 10px;
+  color: white;
 }
 
 .dropdown-content {
   position: absolute;
-  left: 5vw;
+  top: 55px;
+  right: 20px;
   display: flex;
   flex-direction: column;
 
