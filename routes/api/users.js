@@ -111,7 +111,7 @@ router.get('/callback', function (req, res) {
                     if (process.env.NODE_ENV === 'production') {
                         res_uri = 'https://statifymusic.herokuapp.com/#';
                     } else {
-                        res_uri = 'http://localhost:8000/#';
+                        res_uri = 'http://localhost:3000/#/';
                     }
                 // we can also pass the token to the browser to make requests from there
                 res.redirect(res_uri +
