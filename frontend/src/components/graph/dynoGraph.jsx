@@ -1,16 +1,37 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import { Doughnut, Bar } from 'react-chartjs-2';
 
 export default ({dynoData}) => {
 
     const [dyno, setDyno] = useState('acousticness')
     
+
+    const tracks = useSelector(state => state.entities.tracks)
+
+    const oneFive = n => {  //16
+        n -= (n % 5)  //15
+        return (n / 5); //3
+    }
+    
+    const popularity = new Array(20).fill(0);
+    
+
+    if (tracks[0])
+        Object.values(tracks).forEach(item => {
+            popularity[oneFive(item.popularity)]++;
+        });
+
+        dynoData['popularity'] = popularity;
+
+    window.tracks = tracks
+    window.dynoData = dynoData
     useEffect(() => {
         const selector = document.getElementById('selectDyno')
         selector.childNodes.forEach(button => {
             if (button.value === dyno) button.className = button.value + ' selected'
             else button.className = button.value    
-        }) 
+        });
     });
 
     const labels = []
@@ -51,6 +72,7 @@ export default ({dynoData}) => {
             <button value='liveness' onClick={() => setDyno('liveness')}>Liveness</button>
             <button value='speechiness' onClick={() => setDyno('speechiness')}>Speechiness</button>
             <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
+            <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
         <div className='dynoGraph'>
         <Bar 

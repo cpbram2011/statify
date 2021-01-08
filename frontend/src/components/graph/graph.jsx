@@ -31,8 +31,7 @@ export default class Graph extends React.Component {
         const zeroFive = n => {  //.169
             n = Math.floor(n * 100)   //16
             n -= (n % 5)  //15
-            return (n / 5) ;
-
+            return (n / 5);
         }
         //main iterator
         this.props.data.forEach(x => {
