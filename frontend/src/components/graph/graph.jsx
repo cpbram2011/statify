@@ -1,9 +1,7 @@
 import React from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
- 
+ import DynoGraph from './dynoGraph';
 export default class Graph extends React.Component {
-    
-
     
 
     render ()  {
@@ -18,19 +16,24 @@ export default class Graph extends React.Component {
 
 
         //
-        let acousticness = []
-        let danceability = []
-        let energy = []
-        let instrumentalness = []
-        let liveness = []
-        let speechiness = []
-        let valence = []
+        let acousticness = new Array(20).fill(0);
+        let danceability = new Array(20).fill(0);
+        let energy = new Array(20).fill(0);
+        let instrumentalness = new Array(20).fill(0);
+        let liveness = new Array(20).fill(0);
+        let speechiness = new Array(20).fill(0);
+        let valence = new Array(20).fill(0);
+
+        let loudness = new Array(20).fill(0); //roughly -30 to 0
+        let duaration = new Array(20).fill(0);//in ms
 
 
-        let loudness = [] //roughly -30 to 0
-        let duaration = [] //in ms
+        const zeroFive = n => {  //.169
+            n = Math.floor(n * 100)   //16
+            n -= (n % 5)  //15
+            return (n / 5) ;
 
-
+        }
         //main iterator
         this.props.data.forEach(x => {
             if (!x) {
@@ -40,8 +43,26 @@ export default class Graph extends React.Component {
                 let tempo = Math.floor(x.tempo);
                 tempo -= (tempo % 10)
                 tempos[tempo] += 1
+
+                acousticness[zeroFive(x.acousticness)]++;
+                danceability[zeroFive(x.danceability)]++;
+                energy[zeroFive(x.energy)]++;
+                instrumentalness[zeroFive(x.instrumentalness)]++;
+                liveness[zeroFive(x.liveness)]++;
+                speechiness[zeroFive(x.speechiness)]++;
+                valence[zeroFive(x.valence)]++;
             }
+
         });
+        const dynoData = {
+            acousticness,
+            danceability,
+            energy,
+            instrumentalness,
+            liveness,
+            speechiness,
+            valence
+        }
 
         //graph datasets
         const keyData = {
@@ -76,6 +97,7 @@ export default class Graph extends React.Component {
             }]
         };
         
+        //TODO move gradient WETness
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d')
         canvas.width = 300;
@@ -205,8 +227,10 @@ export default class Graph extends React.Component {
             </div>
             <br/>
 
-
         </div>
+
+        {!!dynoData ? console.log(dynoData) : console.log('huh')}
+            <DynoGraph dynoData={dynoData} />
         </>
         )
     }

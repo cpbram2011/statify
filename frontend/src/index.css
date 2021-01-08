@@ -41,3 +41,7 @@ code {
 #donut canvas {
   border: 2px solid green;
 }
+
+.selected {
+  background-color: gray;
+}
