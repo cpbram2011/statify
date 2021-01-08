@@ -9,7 +9,9 @@ import Splash from './components/splash/splash';
 
 const mSTP = state => {
   return ({
-    loggedIn: state.session.isAuthenticated
+    loggedIn: state.session.isAuthenticated,
+    username: state.session.username,
+    profpic: state.session.profpic
   })
 }
 
@@ -35,12 +37,8 @@ class App extends React.Component {
 
 
     this.state = {
-      params: params,
-      loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' },
-      recentlyPlayed: [],
-      topTracks: [],
-      features: {}
+      dropdown: false,
+      modal: false
     }
     
     this.startCycle = this.startCycle.bind(this)
@@ -61,7 +59,16 @@ class App extends React.Component {
     console.log(hashParams)
     return hashParams;
   }
-
+  toggleDropdown () {
+    this.setState({dropdown: !this.state.dropdown})
+  }
+  
+  openModal () {
+    this.setState({modal: true, dropdown: false})
+  }
+  closeModal () {
+    this.setState({modal: false})
+  }
 
   startCycle () {
     const refresh = this.state.params.refresh_token;
@@ -88,13 +95,39 @@ class App extends React.Component {
     
     if (!this.props.loggedIn) return <Splash/>
 
-
+    
 
     return (
       <div className="App">
 
-        <button onClick={() => this.props.logout()}> Logout</button>      
-        <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>      
+        <div className='dropdown-parent'>
+          <img src={this.props.profpic} onClick={() => this.toggleDropdown()}></img>
+          <p onClick={() => this.toggleDropdown()}>
+            {this.props.username}</p>
+
+        </div>
+
+        {!this.state.dropdown ? null : (
+          <div className='dropdown-content'>
+
+            <button onClick={() => this.openModal()}> About</button>      
+            <button onClick={() => this.props.logout()}> Logout</button>      
+            {/* <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>   */}
+            <button>
+            <a href="https://www.spotify.com/us/account/apps/">Remove Statify account</a>
+              
+              </button>    
+          </div>
+        )}
+
+        {!this.state.modal ? null : (
+          <div className='modal-background' onClick={() => this.closeModal()}>
+            <div className='modal'>
+              <button onClick={() => this.closeModal()}>X</button>
+              <p>lorem ipsum dolaris enfkasdfioasef;asdjfnaslkdgjasdhlfgjkasnefljkasdvoliasdnrugasdkjrfselakjrfhselaifuasdnflasjkdfnasdljkfsadnflkasjdnfl</p>
+            </div>
+          </div>
+        )}
         <DataSelector />
         <Graph/>
       </div>

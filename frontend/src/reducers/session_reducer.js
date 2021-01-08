@@ -1,9 +1,11 @@
 
-import { LOGIN, LOGOUT } from '../actions/spotify_actions';
+import { LOGIN, LOGOUT, RECEIVE_USER_DATA } from '../actions/spotify_actions';
 
 const initialState = {
 isAuthenticated: false,
-accessToken: {}
+accessToken: {},
+username: '',
+profpic: ''
 };
 
 export default function(state = initialState, action) {
@@ -13,6 +15,8 @@ switch (action.type) {
       isAuthenticated: true,
       accessToken: action.accessToken
     }
+  case RECEIVE_USER_DATA:
+    return Object.assign({}, state, action.userData)
   
     case LOGOUT:
       return initialState

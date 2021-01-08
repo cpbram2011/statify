@@ -8,12 +8,19 @@ export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_PLAYLISTS = "RECEIVE_PLAYLISTS";
 export const RECEIVE_FEATURES = "RECEIVE_FEATURES";
 export const RECCEIVE_TRACKS = "RECCEIVE_TRACKS";
+export const RECEIVE_USER_DATA = "RECEIVE_USER_DATA";
 
 
 export const login = accessToken => {
     return ({
     type: LOGIN,
     accessToken
+})};
+
+export const receiveUserData = userData => {
+    return ({
+    type: RECEIVE_USER_DATA,
+    userData
 })};
 
 export const logout = () => ({
@@ -40,8 +47,14 @@ export const receiveTracks = tracks => {
 
 export const setAccessToken = accessToken => dispatch => {
     spotifyApi.setAccessToken(accessToken)
-    
     dispatch(login(accessToken))
+    spotifyApi.getMe()
+     .then(res => {
+       dispatch(receiveUserData({
+         username: res.display_name,
+         profpic: res.images[0].url
+       }))
+      })
 }
 
 export const requestPlaylists = () => dispatch => {
@@ -103,8 +116,6 @@ export const requestMySaved = () => dispatch => {
         dispatch(requestFeatures(trackIds))
       })
 };
-
-
 
 const requestFeatures = trackIds => dispatch => {
     spotifyApi.getAudioFeaturesForTracks(trackIds)
