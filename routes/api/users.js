@@ -9,7 +9,19 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-var redirect_uri = 'http://localhost:8000/callback'; // Your redirect uri
+var redirect_uri;
+
+
+
+if (process.env.NODE_ENV === 'production') {
+
+    redirect_uri = 'https://statifymusic.herokuapp.com/callback';
+
+} else {
+    redirect_uri = 'http://localhost:8000/callback';
+}
+
+
 
 /**
  * Generates a random string containing numbers and letters
