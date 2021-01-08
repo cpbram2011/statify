@@ -11,9 +11,6 @@ var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
 
 var redirect_uri;
-
-
-
 if (process.env.NODE_ENV === 'production') {
 
     redirect_uri = 'https://statifymusic.herokuapp.com/callback';
@@ -110,8 +107,14 @@ router.get('/callback', function (req, res) {
                     console.log(body);
                 });
 
+                var res_uri;
+                    if (process.env.NODE_ENV === 'production') {
+                        res_uri = 'https://statifymusic.herokuapp.com/#';
+                    } else {
+                        res_uri = 'http://localhost:8000/#';
+                    }
                 // we can also pass the token to the browser to make requests from there
-                res.redirect('http://localhost:3000/#' +
+                res.redirect(res_uri +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token
