@@ -79,7 +79,7 @@ class App extends React.Component {
           refresh_token: refresh
         }
       }).then(function ({data}) {
-        debugger
+        
         setAuthToken(data.access_token)
       }).catch(err => console.log(err));
       
@@ -136,6 +136,8 @@ class App extends React.Component {
         )}
         <DataSelector />
         <Graph/>
+
+        <h1>NEXTCOMPONENT</h1>
       </div>
     );
   }

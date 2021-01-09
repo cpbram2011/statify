@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { Doughnut, Bar } from 'react-chartjs-2';
+import dynoDescriptions from './dynoText';
+
 
 export default ({dynoData}) => {
 
@@ -12,6 +14,22 @@ export default ({dynoData}) => {
     const oneFive = n => {  //16
         n -= (n % 5)  //15
         return (n / 5); //3
+    }
+
+    const labels = []
+    for (let i = 0; i < 100; i += 5){
+        labels.push(i / 100)
+    }
+
+    const avg = arr => {
+        let ans =  0;
+        let c = 0
+        arr.forEach((x,i) => {
+            ans += labels[i] * x;
+            c += x
+        });
+        ans /= c;
+        return Math.floor(ans * 100) / 100
     }
     
     const popularity = new Array(20).fill(0);
@@ -34,10 +52,7 @@ export default ({dynoData}) => {
         });
     });
 
-    const labels = []
-    for (let i = 0; i < 100; i += 5){
-        labels.push(i / 100)
-    }
+    
     const currentData = {
         labels,
         datasets: [{
@@ -63,7 +78,7 @@ export default ({dynoData}) => {
     window.dynoData = dynoData
     window.dyno = dyno
     return (
-        <>
+        <div className='dynoParent'>
         <div id='selectDyno'>
             <button value='acousticness' onClick={() => setDyno('acousticness')}>Acousticness</button>
             <button value='danceability' onClick={() => setDyno('danceability')}>Danceability</button>
@@ -74,16 +89,24 @@ export default ({dynoData}) => {
             <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
             <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
-        <div className='dynoGraph'>
+
         <Bar 
         data={currentData}
         options={dynoOptions}
         height={400}
         width={700}
         ></Bar>
+        <div className='dynoText'>
+            <p>Average {dyno}: {avg(dynoData[dyno])}</p>
+            <p className='descriptions'>
+                {dynoDescriptions(dyno)}
+            </p>
+
+        </div>
+        <div className='dynoGraph'>
 
 
         </div>
-        </>
+        </div>
     )
 }

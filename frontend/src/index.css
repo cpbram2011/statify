@@ -129,7 +129,7 @@ code {
 .dataSelector {
   display: flex;
   align-items: center;
-  padding-left: 30vw;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   background-color: rgb(0, 0, 124);
   height: 80px;
@@ -138,6 +138,12 @@ code {
 .dataSelector p {
   margin: 0 20px;
   color: white;
+}
+
+
+.dataSelector select {
+  width: 250px;
+
 }
 
 .graphContainer {
@@ -168,4 +174,22 @@ code {
   background: #0053ba;
   outline: 1px solid #fff;
   outline-offset: -4px;
+}
+
+
+.dynoParent {
+  padding-top: 20px;
+  display: flex;
+  height: 420px;
+  overflow-x: scroll
+}
+
+#selectDyno {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.descriptions {
+  width: 240px;
 }
