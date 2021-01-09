@@ -127,7 +127,7 @@ export default class Graph extends React.Component {
                     }
                 }]
             },
-            responsive: false,
+            responsive: true,
             maintainAspectRatio: true,
             legend: {
                 display: false   
@@ -143,7 +143,7 @@ export default class Graph extends React.Component {
                     }
                 }]
             },
-            responsive: false,
+            responsive: true,
             maintainAspectRatio: true,
             legend: {
                 display: false   
@@ -196,7 +196,7 @@ export default class Graph extends React.Component {
                 height={400}
                 width={400}
                 options={{ maintainAspectRatio: true,
-                responsive: false,
+                responsive: true,
                 
                  legend: {
                  display: false   
@@ -205,7 +205,7 @@ export default class Graph extends React.Component {
                 />
             </div>
             <div id='modeChart'>
-                {faveMode}
+                <p>{faveMode}</p>
                 <Bar
                 height={400}
                 width={400}
