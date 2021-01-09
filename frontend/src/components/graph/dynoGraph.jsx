@@ -69,8 +69,8 @@ export default ({dynoData}) => {
                 }
             }]
         },
-        responsive: false,
-        maintainAspectRatio: true,
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
             display: false   
             }
@@ -89,13 +89,15 @@ export default ({dynoData}) => {
             <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
             <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
-
+        <div className='dynoGraph'>
         <Bar 
         data={currentData}
         options={dynoOptions}
-        height={400}
-        width={700}
+        // height={400}
+        // width={700}
         ></Bar>
+
+        </div>
         <div className='dynoText'>
             <p>Average {dyno}: {avg(dynoData[dyno])}</p>
             <p className='descriptions'>
@@ -103,10 +105,7 @@ export default ({dynoData}) => {
             </p>
 
         </div>
-        <div className='dynoGraph'>
-
-
-        </div>
+       
         </div>
     )
 }

@@ -210,6 +210,12 @@ code {
   width: 200px;
 }
 
+.dynoGraph {
+  min-width: 400px;
+  max-width: 800px;
+  flex-grow: 1.4;
+}
+
 .descriptions {
   width: 240px;
 }
