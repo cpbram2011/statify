@@ -61,6 +61,7 @@ export const requestPlaylists = () => dispatch => {
   spotifyApi.getUserPlaylists({limit: 50})
     .then(res => {
       let playlists = {}
+      debugger
       res.items.forEach(x => {
         playlists[x.name] = x.id
       })
