@@ -49,6 +49,7 @@ code {
 /* width */
 ::-webkit-scrollbar {
   height: 5px;
+  width: 5px;
 }
 
 /* Track */
@@ -118,11 +119,16 @@ code {
   right: 20px;
   display: flex;
   flex-direction: column;
-
+  
 }
 
+.dropdown-content a {
+  text-decoration: none;
+  color: white;
+}
 
 /* modal */
+
 
 .modal-background {
   position: fixed;
@@ -137,13 +143,47 @@ code {
   align-items: center;
 }
 
+.modal-wrapper {
+  width: 67vw;
+  max-width: 510px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+
+}
+
 .modal {
 
+  z-index: 3;
   background-color: white;
   height: 60vh;
   width: 60vw;
-  
-  min-width: 500px;
+  overflow-y: scroll;
+}
+
+.modal h1 {
+  margin-top: 10px;
+}
+
+.modal c {
+  float: right;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.modal li {
+  padding: 0 10px;;
+  list-style: none;
+}
+
+.dev p {
+  margin-bottom: 3px;
+  margin-left: 12px;
+}
+.dev a {
+  margin: 0 12px;
 }
 
 .dataSelector {
@@ -187,7 +227,7 @@ code {
 
 #keysig {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   font-size: 2em;
   bottom: 52%;
 

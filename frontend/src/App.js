@@ -119,18 +119,58 @@ class App extends React.Component {
             <button onClick={() => this.openModal()}> About</button>      
             <button onClick={() => this.props.logout()}> Logout</button>      
             {/* <button onClick={() => this.startCycle()}> Start Refresh Cycle</button>   */}
-            <button>
-            <a href="https://www.spotify.com/us/account/apps/">Remove Statify account</a>
-              
+            <form action="https://www.spotify.com/us/account/apps/">
+            <button type='submit'>
+            <a>Remove Statify account</a>
               </button>    
+            </form>
           </div>
         )}
 
         {!this.state.modal ? null : (
           <div className='modal-background' onClick={() => this.closeModal()}>
-            <div className='modal'>
-              <button onClick={() => this.closeModal()}>X</button>
-              <p>lorem ipsum dolaris enfkasdfioasef;asdjfnaslkdgjasdhlfgjkasnefljkasdvoliasdnrugasdkjrfselakjrfhselaifuasdnflasjkdfnasdljkfsadnflkasjdnfl</p>
+            <div className='modal-wrapper'>
+            <div className='modal' onClick={e => e.stopPropagation()}>
+              <c onClick={() => this.closeModal()}>close (x)</c>
+              <li>
+              <h1>About Statify</h1>
+                <h3>Overview</h3>
+                <p>Statify is a MERN stack web app that uses Spotify API to connect to your Spotify account and display graphs with data pulled from your listening history, saved tracks, and playlists.</p>
+              </li>
+              <li>
+                <h3>Developers</h3>
+                <li className='dev'><b>Chris Bram</b> <br></br>
+                <a target='_blank' href='https://www.linkedin.com/in/chris-bram-522a661b9/'>LinkedIn</a>
+                <a target='_blank' href='https://github.com/cpbram2011'>Github</a>
+                <a target='_blank' href='https://cpbram2011.github.io/'>Portfolio Site</a>
+                </li>
+                <br></br>
+                <li className='dev'><b>Michael Wideburg</b> <br></br>
+                  <a target='_blank' href='https://www.linkedin.com/in/michael-wideburg-01331b34/'>LinkedIn</a>
+                  <a target='_blank' href='https://github.com/mwideburg'>Github</a>
+                  <a target='_blank' href='https://mwideburg.github.io/'>Portfolio Site</a>
+
+
+                </li>
+              </li>
+              <br></br>
+              <li>
+              
+              <h1>F.A.Q.</h1> 
+                <h3>Is it secure?</h3>
+                <p>Statify adheres to all the latest standards in web security. And as logging in to Statify is handled by Spotify, it's as secure as logging in to Spotify itself.</p>
+              </li>
+              <li>
+                <h3>How is my data used?</h3>
+                <p>To use Statify, you'll need to allow the app to have access to some of your account information. Your data is only used to calculate an average with which users can compare their own scores.</p>        
+              </li>
+              <li>
+                <h3>I have some other issue (or concern, compliment, maybe a suggestion)</h3>
+                <a href='mailto:cpbram2011@gmail.com'>Feel free to reach out via email!</a>
+              
+              </li>
+              <br></br>
+            </div>
             </div>
           </div>
         )}

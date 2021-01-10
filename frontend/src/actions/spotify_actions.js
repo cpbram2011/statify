@@ -104,12 +104,13 @@ export const requestPlaylistItems = playlistId => dispatch => {
 
 export const requestMostRecent = () => dispatch => {
   let trackIds = [];
-    spotifyApi.getMyRecentlyPlayedTracks({limit: 50, offset: 49})
+    spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
       .then(res => {
-        dispatch(receiveTracks(res.items));
         res.items.forEach(item => {
-            trackIds.push(item.track.id)
+          trackIds.push(item.track.id)
         });
+
+        dispatch(receiveTracks(res.items));
         dispatch(requestFeatures(trackIds))
       })
 };
