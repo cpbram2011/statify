@@ -196,13 +196,14 @@ export default class Graph extends React.Component {
                 height={400}
                 width={400}
                 options={{ maintainAspectRatio: true,
-                responsive: true,
-                
-                 legend: {
-                 display: false   
-                 }
+                    responsive: true,
+                    
+                    legend: {
+                        display: false   
+                    }
                 }}
                 />
+                <p id='keysig'>#/♭</p>
             </div>
             <div id='modeChart'>
                 <p>{faveMode}</p>

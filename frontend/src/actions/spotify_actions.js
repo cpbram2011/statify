@@ -1,5 +1,4 @@
 
-import SpotifyWebApi from 'spotify-web-api-js';
 import spotifyApi from '../util/spotify_api_util'
 
 export const LOGIN = "LOGIN";
@@ -7,7 +6,6 @@ export const LOGOUT = "LOGOUT";
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_PLAYLISTS = "RECEIVE_PLAYLISTS";
 export const RECEIVE_FEATURES = "RECEIVE_FEATURES";
-export const RECCEIVE_TRACKS = "RECCEIVE_TRACKS";
 export const RECEIVE_USER_DATA = "RECEIVE_USER_DATA";
 
 
@@ -61,7 +59,6 @@ export const requestPlaylists = () => dispatch => {
   spotifyApi.getUserPlaylists({limit: 50})
     .then(res => {
       let playlists = {}
-      
       res.items.forEach(x => {
         playlists[x.name] = x.id
       })
@@ -69,17 +66,28 @@ export const requestPlaylists = () => dispatch => {
     })
 }
 
-
+//here
 export const requestTopTracks = timeRange => dispatch => {
+  let trackIds = [];
+  let tracks = [];
     spotifyApi.getMyTopTracks({limit: 50, time_range: timeRange})
       .then(res => {
-        dispatch(receiveTracks(res.items));
-        let trackIds = [];
+        tracks = tracks.concat(res.items)
         res.items.forEach(item => {
             trackIds.push(item.id)
         });
-        dispatch(requestFeatures(trackIds))
-      });
+    
+      spotifyApi.getMyTopTracks({limit: 50, offset: 49, time_range: timeRange})
+        .then(res => {
+          res.items.shift();
+          res.items.forEach(item => {
+            trackIds.push(item.id)
+          });
+          dispatch(receiveTracks(tracks.concat(res.items)));
+          dispatch(requestFeatures(trackIds))
+        })
+    });
+
 }
 
 export const requestPlaylistItems = playlistId => dispatch => {
@@ -95,10 +103,10 @@ export const requestPlaylistItems = playlistId => dispatch => {
 }
 
 export const requestMostRecent = () => dispatch => {
-    spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
+  let trackIds = [];
+    spotifyApi.getMyRecentlyPlayedTracks({limit: 50, offset: 49})
       .then(res => {
         dispatch(receiveTracks(res.items));
-        let trackIds = [];
         res.items.forEach(item => {
             trackIds.push(item.track.id)
         });
@@ -107,15 +115,35 @@ export const requestMostRecent = () => dispatch => {
 };
 
 export const requestMySaved = () => dispatch => {
-    spotifyApi.getMySavedTracks({limit: 50})
-      .then(res => {
-        dispatch(receiveTracks(res.items));
-        let trackIds = [];
-        res.items.forEach(item => {
-            trackIds.push(item.track.id)
+    // spotifyApi.getMySavedTracks({limit: 50})
+    //   .then(res => {
+    //     dispatch(receiveTracks(res.items));
+    //     let trackIds = [];
+    //     res.items.forEach(item => {
+    //         trackIds.push(item.track.id)
+    //     });
+    //     dispatch(requestFeatures(trackIds))
+    //   })
+
+      let trackIds = [];
+      let tracks = [];
+        spotifyApi.getMySavedTracks({limit: 50})
+          .then(res => {
+            tracks = tracks.concat(res.items)
+            res.items.forEach(item => {
+                trackIds.push(item.track.id)
+            });
+        
+          spotifyApi.getMySavedTracks({limit: 50, offset: 49})
+            .then(res => {
+              res.items.shift();
+              res.items.forEach(item => {
+                trackIds.push(item.track.id)
+              });
+              dispatch(receiveTracks(tracks.concat(res.items)));
+              dispatch(requestFeatures(trackIds))
+            })
         });
-        dispatch(requestFeatures(trackIds))
-      })
 };
 
 const requestFeatures = trackIds => dispatch => {

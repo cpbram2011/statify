@@ -170,14 +170,13 @@ code {
   height: 550px;
   width: 100%;
   display: flex;
-  
   overflow-x: scroll;
 }
 
 .graphContainer div {
-  margin: 0 5px;
+  margin: auto;
   height: 500px;
-  border: 3px solid black;
+  border: 3px solid rgb(0, 0, 124);
   border-radius: 10px;
 }
 
@@ -186,7 +185,11 @@ code {
   font-size: larger;
 }
 
-#donut canvas {
+#keysig {
+  position: relative;
+  z-index: 2;
+  font-size: 2em;
+  bottom: 52%;
 
 }
 
