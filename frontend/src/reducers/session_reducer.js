@@ -5,7 +5,8 @@ const initialState = {
 isAuthenticated: false,
 accessToken: {},
 username: '',
-profpic: ''
+profpic: '',
+errors: ''
 };
 
 export default function(state = initialState, action) {
@@ -19,7 +20,8 @@ switch (action.type) {
     return Object.assign({}, state, action.userData)
   
     case LOGOUT:
-      return initialState
+      initialState.errors = action.message;
+      return initialState;
 
   default:
     return state;

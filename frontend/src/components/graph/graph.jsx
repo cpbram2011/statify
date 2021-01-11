@@ -190,11 +190,11 @@ export default class Graph extends React.Component {
             <>
         <div className='graphContainer'>
             <div id="donut">
-                <p>Your favorite songs are in the key of {favKey}</p>
+                <p>Most Common Key: {favKey}</p>
             <Doughnut
                 data={keyData}
                 height={400}
-                width={400}
+                width={420}
                 options={{ maintainAspectRatio: true,
                     responsive: true,
                     
@@ -203,13 +203,13 @@ export default class Graph extends React.Component {
                     }
                 }}
                 />
-                <p id='keysig'>#/♭</p>
+                <p id='keysig'>♯/♭</p>
             </div>
             <div id='modeChart'>
                 <p>{faveMode}</p>
                 <Bar
                 height={400}
-                width={400}
+                width={420}
                     data={modeData}
                     options={modeOptions}
                     />
@@ -219,7 +219,7 @@ export default class Graph extends React.Component {
                 <p>You prefer {speed} music ({favTempo} bpm)</p>
                 <Bar
                 height={400}
-                width={400}
+                width={420}
                     data={tempoData}
                     options={tempoOptions}
                     />

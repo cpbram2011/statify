@@ -11,7 +11,8 @@ const mSTP = state => {
   return ({
     loggedIn: state.session.isAuthenticated,
     username: state.session.username,
-    profpic: state.session.profpic
+    profpic: state.session.profpic,
+    errors: state.session.errors
   })
 }
 
@@ -93,7 +94,7 @@ class App extends React.Component {
   
   render() {
     
-    if (!this.props.loggedIn) return <Splash/>
+    if (!this.props.loggedIn) return <Splash message={this.props.errors}/>
 
     
 

@@ -54,7 +54,8 @@ code {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #ffffff; 
+  display: none;
 }
  
 /* Handle */
@@ -144,8 +145,8 @@ code {
 }
 
 .modal-wrapper {
-  width: 67vw;
-  max-width: 510px;
+  max-width: 60vw;
+  min-width: 310px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -159,7 +160,8 @@ code {
   z-index: 3;
   background-color: white;
   height: 60vh;
-  width: 60vw;
+  max-width: 60vw;
+  min-width: 300px;
   overflow-y: scroll;
 }
 
@@ -216,8 +218,8 @@ code {
 .graphContainer div {
   margin: auto;
   height: 500px;
-  border: 3px solid rgb(0, 0, 124);
-  border-radius: 10px;
+  /* padding: 0 10px */
+  border-right: 20px solid white;
 }
 
 .graphContainer p {
@@ -228,8 +230,8 @@ code {
 #keysig {
   position: relative;
   z-index: 1;
-  font-size: 2em;
-  bottom: 52%;
+  font-size: 3em;
+  bottom: 57%;
 
 }
 
@@ -244,19 +246,27 @@ code {
   padding-top: 20px;
   display: flex;
   height: 420px;
-  overflow-x: scroll
+  overflow-x: scroll;
 }
 
+
 #selectDyno {
+  margin-left: max(6%, 5px);
+
   display: flex;
   flex-direction: column;
   width: 200px;
+  margin-right: 10px;
 }
 
 .dynoGraph {
   min-width: 400px;
   max-width: 800px;
   flex-grow: 1.4;
+}
+
+.dynoText {
+  margin: 0 10px;
 }
 
 .descriptions {

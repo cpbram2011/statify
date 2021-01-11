@@ -21,8 +21,9 @@ export const receiveUserData = userData => {
     userData
 })};
 
-export const logout = () => ({
+export const logout = (message) => ({
   type: LOGOUT,
+  message
 })
 
 export const receiveFeatures = features => {
@@ -63,6 +64,13 @@ export const requestPlaylists = () => dispatch => {
         playlists[x.name] = x.id
       })
       dispatch(receivePlaylists(playlists))
+    })
+    .catch(err => {
+      if (err.status === 401) {
+        dispatch(logout('Your session has timed out. Please sign in again.'))
+      } else {
+        console.log(err)
+      }
     })
 }
 

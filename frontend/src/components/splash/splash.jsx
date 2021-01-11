@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-export default () => (
+export default ({message}) => {
+    return (
     <>
         <h1>Statify</h1>
         <h2>View and compare stats about your musical taste</h2>
@@ -13,7 +14,10 @@ export default () => (
         <a href='http://localhost:8000/login' > Login to Spotify </a>
         )
     }
+    <p>
+        {message}
+        </p>
     
     
     </>
-)
+)}
