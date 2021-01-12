@@ -4,13 +4,12 @@ import React from 'react';
 export default class Tracks extends React.Component{
     render(){
         
-        if( Object.values(this.props.tracks).length < 1 || this.props.features.length < 1){
+        if(this.props.tracks.length < 1 || this.props.features.length < 1 || this.props.features.length === this.props.tracks.length){
             return null
         }
-        // debugger
         let features = this.props.features
-        debugger
-        let tracks = Object.values(this.props.tracks).map((ele, i)=> {
+        let tracks = this.props.tracks.map((ele, i)=> {
+            debugger
             return (<li>
                 <div className="track-div" key={i} >
                    

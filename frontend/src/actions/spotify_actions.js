@@ -91,7 +91,7 @@ export const requestTopTracks = timeRange => dispatch => {
           res.items.forEach(item => {
             trackIds.push(item.id)
           });
-          dispatch(receiveTracks(tracks.concat(res.items)));
+          dispatch(receiveTracks(tracks));
           dispatch(requestFeatures(trackIds))
         })
     });
@@ -101,24 +101,28 @@ export const requestTopTracks = timeRange => dispatch => {
 export const requestPlaylistItems = playlistId => dispatch => {
   spotifyApi.getPlaylistTracks(playlistId)
     .then(res => {
-      dispatch(receiveTracks(res.items));
       let trackIds = [];
+      let tracks = [];
       res.items.forEach(item => {
-          trackIds.push(item.track.id)
+        trackIds.push(item.track.id);
+        tracks.push(item.track);
       });
+      dispatch(receiveTracks(tracks));
       dispatch(requestFeatures(trackIds))
     });
 }
 
 export const requestMostRecent = () => dispatch => {
   let trackIds = [];
+  let tracks = [];
     spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
       .then(res => {
         res.items.forEach(item => {
-          trackIds.push(item.track.id)
+          trackIds.push(item.track.id);
+          tracks.push(item.track);
         });
 
-        dispatch(receiveTracks(res.items));
+        dispatch(receiveTracks(tracks));
         dispatch(requestFeatures(trackIds))
       })
 };
@@ -138,18 +142,20 @@ export const requestMySaved = () => dispatch => {
       let tracks = [];
         spotifyApi.getMySavedTracks({limit: 50})
           .then(res => {
-            tracks = tracks.concat(res.items)
             res.items.forEach(item => {
-                trackIds.push(item.track.id)
+                trackIds.push(item.track.id);
+                tracks.push(item.track);
             });
         
           spotifyApi.getMySavedTracks({limit: 50, offset: 49})
             .then(res => {
               res.items.shift();
               res.items.forEach(item => {
-                trackIds.push(item.track.id)
+                trackIds.push(item.track.id);
+                tracks.push(item.track);
+
               });
-              dispatch(receiveTracks(tracks.concat(res.items)));
+              dispatch(receiveTracks(tracks));
               dispatch(requestFeatures(trackIds))
             })
         });
