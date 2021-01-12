@@ -27,16 +27,12 @@ export default class DataSelector extends React.Component {
     getData () {
         switch (this.state.data) {
             case 'recent':
-                console.log('looking for recent data')
                 this.props.requestMostRecent(this.state.time)
-                
                 break;
             case 'top':
-                console.log('looking for top data')
                 this.props.requestTopTracks(this.state.time)
                 break;
             case 'liked':
-                console.log('looking for liked data')
                 this.props.requestMySaved(this.state.time)
                 break;
         

@@ -56,7 +56,7 @@ if (error) {
             'Authorization': 'Bearer ' + access_token
         }
     }).then(res => {
-        console.log(res)
+        // console.log(res)
     })
     } else {
         // render initial screen

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut, Bar, defaults } from 'react-chartjs-2';
  import DynoGraph from './dynoGraph';
 export default class Graph extends React.Component {
     
 
     render ()  {
+        defaults.global.defaultFontColor = 'green';
         if (!this.props.data) return null;
 
 
@@ -124,6 +125,9 @@ export default class Graph extends React.Component {
                     ticks: {
                         beginAtZero: true,
                         suggestedMax: 10
+                    },
+                    gridLines: {
+                        color: '#969696'
                     }
                 }]
             },
@@ -213,6 +217,11 @@ export default class Graph extends React.Component {
                     
                     legend: {
                         display: false   
+                    },
+                    elements: {
+                        arc: {
+                            borderWidth: 0
+                        }
                     }
                 }}
                 />
@@ -241,8 +250,6 @@ export default class Graph extends React.Component {
             <br/>
 
         </div>
-
-        {!!dynoData ? console.log(dynoData) : console.log('huh')}
             <DynoGraph dynoData={dynoData} />
         </>
         )
