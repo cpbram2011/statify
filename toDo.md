@@ -1,9 +1,10 @@
 Todos
 
--Access token timeout protocol
--add suggested max logic to bar graphs
+-error handling
+-maybe a sharpflat ratio?   
+-add suggested max option to bar graphs
 -Component for index track names and info
--Fancier interpolation for topstats (ie: you 'slightly' prefer songs in the key)
+-Edit graph text 
 -CSS polish:
     *Splash
     *dataSelector
@@ -15,3 +16,19 @@ Todos
 Concerns
 
 -About content
+-Dyno text
+
+
+
+
+
+
+
+ETC
+
+
+var gcd = function(a, b) {
+  if (!b) return a;
+
+  return gcd(b, a % b);
+};

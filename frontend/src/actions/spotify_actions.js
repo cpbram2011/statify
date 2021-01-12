@@ -68,6 +68,9 @@ export const requestPlaylists = () => dispatch => {
     .catch(err => {
       if (err.status === 401) {
         dispatch(logout('Your session has timed out. Please sign in again.'))
+
+      } else if (err.status === 503){
+        //TODO: better error handling -_-
       } else {
         console.log(err)
       }
