@@ -2,21 +2,32 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+   font-family: 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: black;
+  color: white;
 }
-
+h1, h2, h3 {
+   font-family: 'Varela Round', sans-serif;
+}
+.navbar h1 {
+  font-size: 50px;
+  letter-spacing: 10px;
+  
+}
 button {
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
-  background: #0069ed;
-  color: #ffffff;
+  background: #00ed76;
+  
+  color: black;
   font-family: sans-serif;
   font-size: 1rem;
   cursor: pointer;
@@ -26,15 +37,25 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+#selectDyno :first-child{
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 
-button:hover,
-button:focus {
-  background: #0053ba;
+}
+#selectDyno :last-child{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+}
+button:hover{
+  background: #5ffa93;
+}
+button:focus{
+  outline: none;
 }
 
 button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
+  background: #5ffa93;
 }
 
 button:active {
@@ -54,8 +75,7 @@ code {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #ffffff; 
-  display: none;
+  background: lightgreen;
 }
  
 /* Handle */
@@ -72,12 +92,14 @@ code {
 /* Dropdown */
 
 .navbar {
+  font-family: 'Noto Sans JP', sans-serif;
   display: flex;
   height: 64px;
   width: 100%;
+  color: black;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(0, 0, 124);
+  background-color: rgb(68, 238, 139);
 }
 
 .navbar .left {
@@ -85,10 +107,12 @@ code {
 }
 
 .navbar .right {
+  
   margin-right: 20px;
   display: flex;
   align-items: center;
   padding: 2px;
+  
 }
 
 .navbar .right:hover {
@@ -96,7 +120,7 @@ code {
 }
 
 .navbar h1 {
-  color: white;
+  color: black;
 }
 
 
@@ -109,7 +133,7 @@ code {
 .navbar p {
   cursor: pointer;
   margin: 0 10px;
-  color: white;
+  color: black;
 }
 
 .dropdown-content {
@@ -137,7 +161,7 @@ code {
   z-index: 2;
   height: 100vh;
   width: 100vw;
-  
+  color: black;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -187,13 +211,20 @@ code {
 .dev a {
   margin: 0 12px;
 }
-
+select {
+  border: none;
+  padding-left: 20px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .dataSelector {
+  color: black;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 20px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  background-color: rgb(0, 0, 124);
+  background-color: rgb(68, 238, 139);
   height: 80px;
 }
 
@@ -204,7 +235,11 @@ code {
 
 
 .dataSelector select {
-  width: 250px;
+    width: 250px;
+    height: 40px;
+    background-color: white;
+    
+    border-radius: 2px;
 
 }
 
@@ -219,7 +254,7 @@ code {
   margin: auto;
   height: 500px;
   /* padding: 0 10px */
-  border-right: 20px solid white;
+  /* border-right: 20px solid white; */
 }
 
 .graphContainer p {
@@ -236,29 +271,33 @@ code {
 }
 
 .selected {
-  background: #0053ba;
-  outline: 1px solid #fff;
-  outline-offset: -4px;
+ 
 }
 
 
 .dynoParent {
-  padding-top: 20px;
+  padding-top: 40px;
   display: flex;
+  /* border-top: 5px solid greenyellow; */
+  
   height: 420px;
   overflow-x: scroll;
 }
 
 
 #selectDyno {
-  margin-left: max(6%, 5px);
+  margin-left: max(8%, 5px);
 
   display: flex;
   flex-direction: column;
   width: 200px;
   margin-right: 10px;
 }
-
+.centerDyno{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
 .dynoGraph {
   min-width: 400px;
   max-width: 800px;
@@ -267,8 +306,74 @@ code {
 
 .dynoText {
   margin: 0 10px;
+  padding-left: 20px;
+  
+  
+}
+#average{
+  font-size: 18px;
+}
+.descriptions {
+  
+  width: 240px;
+  font-size: 13px;
+}
+.pd-l-10{
+  padding-left: 10px;
+}
+.tracks-container{
+ 
+  height: 500px;
+  margin-bottom: 300px;
+  
+  /* min-width: 600px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
 }
 
-.descriptions {
-  width: 240px;
+
+.track-div{
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  margin: 10px;
+  
+  
+}
+.album-div{
+  display: flex;
+
+}
+.artist-name{
+  color: rgb(214, 214, 214);
+  font-weight: 100;
+  font-size: 13px;
+  color: rgb(152, 248, 152);
+}
+.track-container :last-child{
+  border-bottom: 0;
+}
+.album-art{
+  width: 100px;
+
+}
+.track-ul{
+  list-style: none;
+  overflow-y: scroll;
+}
+.track-ul li{
+
+  border-bottom: 1px solid white;
+  margin: 0;
+}
+.song-info{
+  padding-left: 20px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  
 }
