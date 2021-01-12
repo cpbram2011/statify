@@ -6,7 +6,8 @@ import DataSelector from '../src/components/dataSelector/dataSelector_container'
 import Graph from '../src/components/graph/graph_container';
 import Axios from 'axios';
 import Splash from './components/splash/splash';
-
+import Tracks from './components/tracks/track_component'
+// import './assets/css/fonts.css';
 const mSTP = state => {
   return ({
     loggedIn: state.session.isAuthenticated,
@@ -178,7 +179,8 @@ class App extends React.Component {
         <DataSelector />
         <Graph/>
 
-        <h1>NEXTCOMPONENT</h1>
+        <h1 className="pd-l-10">TRACK LIST</h1>
+        <Tracks/>
       </div>
     );
   }
