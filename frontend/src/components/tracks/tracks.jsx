@@ -6,7 +6,8 @@ export default class Tracks extends React.Component{
     render(){
         
         if(this.props.tracks.length < 1 || this.props.features.length < 1 || this.props.features.length !== this.props.tracks.length){
-            return null
+        
+            return null;
         }
         let features = this.props.features
         let tracks = this.props.tracks.map((ele, i)=> {

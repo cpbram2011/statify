@@ -80,16 +80,18 @@ export const requestTopTracks = timeRange => dispatch => {
   let tracks = [];
     spotifyApi.getMyTopTracks({limit: 50, time_range: timeRange})
       .then(res => {
-        tracks = tracks.concat(res.items)
         res.items.forEach(item => {
-            trackIds.push(item.id)
+          
+            trackIds.push(item.id);
+            tracks.push(item)
         });
     
       spotifyApi.getMyTopTracks({limit: 50, offset: 49, time_range: timeRange})
         .then(res => {
           res.items.shift();
           res.items.forEach(item => {
-            trackIds.push(item.id)
+            trackIds.push(item.id);
+            tracks.push(item);
           });
           dispatch(receiveTracks(tracks));
           dispatch(requestFeatures(trackIds))
