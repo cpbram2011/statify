@@ -32,7 +32,6 @@ class App extends React.Component {
     super(props);
     const params = this.getHashParams();
     const token = params.access_token
-    console.log(params.refresh_token) // <-
     if(token){
       this.props.setAccessToken(token)
     }
@@ -58,7 +57,6 @@ class App extends React.Component {
       e = r.exec(q);
     }
     
-    console.log(hashParams)
     return hashParams;
   }
   toggleDropdown () {

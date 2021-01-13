@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Doughnut, Bar } from 'react-chartjs-2';
  import DynoGraph from './dynoGraph';
@@ -248,3 +249,4 @@ export default class Graph extends React.Component {
         )
     }
 }
+
