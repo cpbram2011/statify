@@ -36,9 +36,8 @@ export default ({dynoData}) => {
     
 
     if (tracks[0])
-        Object.values(tracks).forEach(item => {
-            if (item.hasOwnProperty('popularity')) popularity[oneFive(item.popularity)]++;
-            else popularity[oneFive(item.track.popularity)]++
+        tracks.forEach(item => {
+            popularity[oneFive(item.popularity)]++;
         });
         dynoData['popularity'] = popularity;
 

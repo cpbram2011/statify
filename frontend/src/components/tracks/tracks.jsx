@@ -2,15 +2,17 @@ import React from 'react';
 
 
 export default class Tracks extends React.Component{
+
     render(){
         
-        if(this.props.tracks.length < 1 || this.props.features.length < 1 || this.props.features.length === this.props.tracks.length){
+        if(this.props.tracks.length < 1 || this.props.features.length < 1 || this.props.features.length !== this.props.tracks.length){
             return null
         }
         let features = this.props.features
         let tracks = this.props.tracks.map((ele, i)=> {
-            debugger
-            return (<li>
+
+            return (
+            <li>
                 <div className="track-div" key={i} >
                    
                     <div className="album-div">
@@ -30,7 +32,6 @@ export default class Tracks extends React.Component{
                 </div>
             </li>)
         })
-        debugger
         return(
             <div className="tracks-container">
                 <ul className="track-ul">

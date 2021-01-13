@@ -2,7 +2,7 @@ import {RECEIVE_FEATURES, RECEIVE_PLAYLISTS, RECEIVE_TRACKS} from '../actions/sp
 
 const initialState = {
     features: [],
-    tracks: {},
+    tracks: [],
     playlists: {}
     };
 
