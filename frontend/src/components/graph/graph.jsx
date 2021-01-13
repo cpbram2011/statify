@@ -124,11 +124,14 @@ export default class Graph extends React.Component {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
+
                         suggestedMax: 10
                     },
                     gridLines: {
                         color: '#969696'
+
                     }
+
                 }]
             },
             responsive: true,
@@ -144,6 +147,9 @@ export default class Graph extends React.Component {
                     ticks: {
                         beginAtZero: true,
                         suggestedMax: 10
+                    },
+                    gridLines: {
+                        color: "#969696"
                     }
                 }]
             },

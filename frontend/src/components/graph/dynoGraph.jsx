@@ -36,9 +36,8 @@ export default ({dynoData}) => {
     
 
     if (tracks[0])
-        Object.values(tracks).forEach(item => {
-            if (item.hasOwnProperty('popularity')) popularity[oneFive(item.popularity)]++;
-            else popularity[oneFive(item.track.popularity)]++
+        tracks.forEach(item => {
+            popularity[oneFive(item.popularity)]++;
         });
         dynoData['popularity'] = popularity;
 
@@ -66,6 +65,9 @@ export default ({dynoData}) => {
                 ticks: {
                     beginAtZero: true,
                     suggestedMax: 10
+                },
+                gridLines: {
+                    color: "#969696"
                 }
             }]
         },
@@ -79,6 +81,7 @@ export default ({dynoData}) => {
     window.dyno = dyno
     return (
         <div className='dynoParent'>
+            
         <div id='selectDyno'>
             <button value='acousticness' onClick={() => setDyno('acousticness')}>Acousticness</button>
             <button value='danceability' onClick={() => setDyno('danceability')}>Danceability</button>
@@ -89,6 +92,7 @@ export default ({dynoData}) => {
             <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
             <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
+        <div className="centerDyno">
         <div className='dynoGraph'>
         <Bar 
         data={currentData}
@@ -99,13 +103,13 @@ export default ({dynoData}) => {
 
         </div>
         <div className='dynoText'>
-            <p>Average {dyno}: {avg(dynoData[dyno])}</p>
+            <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>
             <p className='descriptions'>
                 {dynoDescriptions(dyno)}
             </p>
 
         </div>
-       
+       </div>
         </div>
     )
 }
