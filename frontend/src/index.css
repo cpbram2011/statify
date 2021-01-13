@@ -89,6 +89,28 @@ code {
 }
 
 
+.splash * {
+  text-align: center;
+  display: block;
+}
+
+.splash h1, h2 {
+  color:  #5ffa93;
+}
+
+.splash a {
+  font-size: 1.5em;
+  color: white;
+}
+.splashimg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60%;
+  width: 100%;
+  z-index: 0;
+}
+
 /* Dropdown */
 
 .navbar {
@@ -271,7 +293,8 @@ select {
 }
 
 .selected {
- 
+  background: #5ffa93;
+
 }
 
 

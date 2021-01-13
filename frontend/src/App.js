@@ -177,8 +177,7 @@ class App extends React.Component {
         <DataSelector />
         <Graph/>
 
-        <h1 className="pd-l-10">TRACK LIST</h1>
-        <Tracks/>
+        {/* <Tracks/> */}
       </div>
     );
   }
