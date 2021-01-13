@@ -1,10 +1,11 @@
 import React from 'react';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut, Bar, defaults } from 'react-chartjs-2';
  import DynoGraph from './dynoGraph';
 export default class Graph extends React.Component {
     
 
     render ()  {
+        defaults.global.defaultFontColor = 'green';
         if (!this.props.data) return null;
 
 
@@ -123,10 +124,12 @@ export default class Graph extends React.Component {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        suggestedMax: 10,
+
+                        suggestedMax: 10
                     },
                     gridLines: {
-                        color: "#969696"
+                        color: '#969696'
+
                     }
 
                 }]
@@ -165,21 +168,23 @@ export default class Graph extends React.Component {
             for (var i = 0; i < array.length; i++) {
               if (!greatest || array[i] > greatest) {
                 greatest = array[i];
-                indexOfGreatest = i;
+                indexOfGreatest = [i];
+              } else if (array[i] === greatest) {
+                  indexOfGreatest.push(i)
               }
             }
             return indexOfGreatest;
           }
 
         const favKeyIndex = findIndexOfGreatest(keys)
-        const favKey = keyArr[favKeyIndex]
+        const favKey = favKeyIndex.map(i => keyArr[i])
         let faveMode
         if (modes[0] === modes[1]){
-            faveMode= 'You like Major and Minor Keys equally '
+            faveMode= 'Equal presence of Major & Minor'
         } else if (modes[0] < modes[1]) {
-            faveMode= 'You prefer Minor Keys'
+            faveMode= 'Most Common Mode: Minor'
         } else {
-            faveMode= 'You prefer Major Keys'
+            faveMode= 'Most Common Mode: Major'
         }
         const favTempo = Object.keys(tempos).reduce((a, b)=>{ return tempos[a] > tempos[b] ? a : b });
         let speed;
@@ -197,7 +202,18 @@ export default class Graph extends React.Component {
             <>
         <div className='graphContainer'>
             <div id="donut">
-                <p>Most Common Key: {favKey}</p>
+
+                {favKey.length === 1 ? (
+                    <p>Most Common Key: {favKey}</p>
+
+                ) : (
+                    <p>Most Common Keys: {favKey.map((x, i)=>{ 
+                        
+                        if (i != favKey.length -1) return x + ' & ';
+                        else return x
+                         
+                    })}</p>
+                )}
             <Doughnut
                 data={keyData}
                 height={400}
@@ -228,7 +244,7 @@ export default class Graph extends React.Component {
 
             </div>
             <div id='tempoChart'>
-                <p>You prefer {speed} music ({favTempo} bpm)</p>
+                <p>Average Tempo: {favTempo} bpm ({speed})</p>
                 <Bar
                 height={400}
                 width={420}
@@ -240,8 +256,6 @@ export default class Graph extends React.Component {
             <br/>
 
         </div>
-
-        {!!dynoData ? console.log(dynoData) : console.log('huh')}
             <DynoGraph dynoData={dynoData} />
         </>
         )
