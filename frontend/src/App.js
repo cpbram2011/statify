@@ -106,8 +106,8 @@ class App extends React.Component {
           <div className='left'>
             <h1>Statify</h1>
           </div>
-          <div className='right'> 
-            <img src={this.props.profpic} onClick={() => this.toggleDropdown()}></img>
+          <div className='right' onClick={() => this.toggleDropdown()}> 
+            <img src={this.props.profpic} ></img>
             <p onClick={() => this.toggleDropdown()}>
             {this.props.username}
             </p>

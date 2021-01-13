@@ -165,21 +165,23 @@ export default class Graph extends React.Component {
             for (var i = 0; i < array.length; i++) {
               if (!greatest || array[i] > greatest) {
                 greatest = array[i];
-                indexOfGreatest = i;
+                indexOfGreatest = [i];
+              } else if (array[i] === greatest) {
+                  indexOfGreatest.push(i)
               }
             }
             return indexOfGreatest;
           }
 
-        const favKeyIndex = findIndexOfGreatest(keys)
-        const favKey = keyArr[favKeyIndex]
+        const favKeyIndex = findIndexOfGreatest(keys);
+        const favKey = favKeyIndex.map(x => keyArr[x]);
         let faveMode
         if (modes[0] === modes[1]){
-            faveMode= 'You like Major and Minor Keys equally '
+            faveMode= 'Equal Parts Major and Minor'
         } else if (modes[0] < modes[1]) {
-            faveMode= 'You prefer Minor Keys'
+            faveMode= 'Most Common Mode: Minor'
         } else {
-            faveMode= 'You prefer Major Keys'
+            faveMode= 'Most Common Mode: Major'
         }
         const favTempo = Object.keys(tempos).reduce((a, b)=>{ return tempos[a] > tempos[b] ? a : b });
         let speed;
@@ -197,7 +199,7 @@ export default class Graph extends React.Component {
             <>
         <div className='graphContainer'>
             <div id="donut">
-                <p>Most Common Key: {favKey}</p>
+                <p>Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
             <Doughnut
                 data={keyData}
                 height={400}
@@ -228,7 +230,7 @@ export default class Graph extends React.Component {
 
             </div>
             <div id='tempoChart'>
-                <p>You prefer {speed} music ({favTempo} bpm)</p>
+                <p>Average Tempo: {favTempo} bpm ({speed})</p>
                 <Bar
                 height={400}
                 width={420}
@@ -241,7 +243,6 @@ export default class Graph extends React.Component {
 
         </div>
 
-        {!!dynoData ? console.log(dynoData) : console.log('huh')}
             <DynoGraph dynoData={dynoData} />
         </>
         )

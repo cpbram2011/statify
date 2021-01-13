@@ -6,7 +6,7 @@ import dynoDescriptions from './dynoText';
 
 export default ({dynoData}) => {
 
-    const [dyno, setDyno] = useState('acousticness')
+    const [dyno, setDyno] = useState('popularity')
     
 
     const tracks = useSelector(state => state.entities.tracks)
