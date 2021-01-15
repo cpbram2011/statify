@@ -63,6 +63,7 @@ export default class DataSelector extends React.Component {
                 {this.state.data.length > 9 ? (
                     <p>playlist</p>
                 ) : null }
+                
                 {this.state.data === 'top' ? (
                     <>
                     <p>from the past </p>

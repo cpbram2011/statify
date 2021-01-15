@@ -171,7 +171,6 @@ code {
 
 .dropdown-content a {
   text-decoration: none;
-  color: white;
 }
 
 /* modal */
@@ -247,7 +246,8 @@ select {
   flex-wrap: wrap;
   margin-bottom: 20px;
   background-color: rgb(68, 238, 139);
-  height: 80px;
+  min-height: 80px;
+  padding-bottom: 10px;
 }
 
 .dataSelector p {

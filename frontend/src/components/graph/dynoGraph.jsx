@@ -56,7 +56,7 @@ export default ({dynoData}) => {
         labels,
         datasets: [{
             data: dynoData[dyno],
-            backgroundColor: '#e6194B',
+            backgroundColor: '#ED45A7',
         }]
     };
     const dynoOptions = {
