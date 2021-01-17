@@ -173,6 +173,7 @@ code {
   text-decoration: none;
 }
 
+
 /* modal */
 
 
@@ -319,7 +320,6 @@ select {
 .centerDyno{
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
 }
 .dynoGraph {
   min-width: 400px;

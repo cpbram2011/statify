@@ -7,6 +7,8 @@ import Graph from '../src/components/graph/graph_container';
 import Axios from 'axios';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
+
+
 // import './assets/css/fonts.css';
 const mSTP = state => {
   return ({
@@ -135,7 +137,7 @@ class App extends React.Component {
               <li>
               <h1>About Statify</h1>
                 <h3>Overview</h3>
-                <p>Statify is a MERN stack web app that uses Spotify API to connect to your Spotify account and display graphs with data pulled from your listening history, saved tracks, and playlists.</p>
+                <p>Statify is a web app that uses Spotify API to connect to your Spotify account and display graphs with data pulled from your listening history, saved tracks, and playlists.</p>
               </li>
               <li>
                 <h3>Developers</h3>
