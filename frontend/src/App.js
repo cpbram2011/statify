@@ -179,7 +179,7 @@ class App extends React.Component {
         <DataSelector />
         <Graph/>
 
-        {/* <Tracks/> */}
+        <Tracks/>
       </div>
     );
   }
