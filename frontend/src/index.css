@@ -408,12 +408,7 @@ select {
   display: flex;
 
 }
-.artist-name{
-  /* color: rgb(214, 214, 214); */
-  font-weight: 100;
-  font-size: 13px;
-  color: rgb(152, 248, 152);
-}
+
 .track-container :last-child{
   border-bottom: 0;
 }
@@ -426,6 +421,7 @@ select {
   list-style: none;
   overflow-y: scroll;
   margin-top:0px;
+  width: 845px;
   /* color: black; */
   border-top: white solid 1px;
   padding-left: 0px;
@@ -446,9 +442,18 @@ select {
   align-items: flex-start;
   
 }
-.song-info p{
+.song-title{
   margin: 0px;
-  
+  color: white;
+}
+
+.artist-name{
+  /* color: rgb(214, 214, 214); */
+  font-weight: 100;
+  margin: 0px;
+  margin-left: 5px;
+  font-size: 13px;
+  color: rgb(152, 248, 152);
 }
 .slant-container{
   display: flex;

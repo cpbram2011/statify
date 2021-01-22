@@ -27,7 +27,7 @@ export default class Tracks extends React.Component{
                     <div className="album-div">
                     <img className="album-art" src={ele.album.images[0].url} alt="album art"></img>
                     <div className="song-info">
-                    <p>"{ele.name}"</p>
+                    <p className='song-title'>"{ele.name}"</p>
 
                     <p className="artist-name">{ele.artists[0].name}</p>
                     </div>
