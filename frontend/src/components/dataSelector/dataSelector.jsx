@@ -46,7 +46,7 @@ export default class DataSelector extends React.Component {
         this.getData()
 
         const playlistOptions = Object.keys(this.props.playlists).map((k) => (
-            <option value={this.props.playlists[k]}>{k}</option>
+            <option value={this.props.playlists[k]} key={this.props.playlists[k]}>{k}</option>
         ))
         return (
             <>
