@@ -14,6 +14,10 @@ body {
 h1, h2, h3 {
    font-family: 'Varela Round', sans-serif;
 }
+
+.navbar{
+  
+}
 .navbar h1 {
   font-size: 50px;
   letter-spacing: 10px;
@@ -345,8 +349,8 @@ select {
   padding-left: 10px;
 }
 .tracks-container{
-  z-index: 100;
-  height: 850px;
+ 
+  height: 800px;
   margin-bottom: 300px;
   background: black;
   min-width: 600px;
@@ -428,13 +432,14 @@ select {
   min-width: 600px;
   max-width: 625px;
   /* color: black; */
+  background-color: rgba(129, 129, 129, .2);
   border: rgb(156, 156, 156) solid 1px;
   padding-left: 0px;
   margin-left: 10px;
 }
 .track-ul li{
   
-
+  
   border-bottom: 1px solid rgb(156, 156, 156);
   margin: 0;
 }
@@ -470,37 +475,47 @@ select {
   display: flex;
   justify-content: space-between;
   text-align: center;
- 
-}
-
-
-.dynoTrack-container{
   
+    margin-top: 30px;
 }
+
 .album-info{
   width: 100%;
   min-width: 600px;
   display: flex;
   /* max-width: 900px; */
-  margin-top: 100px;
- 
+  /* align-items: center; */
+  margin-bottom:15px;
+  margin-top:15px;
   justify-content: center;
 }
+.album-art-div{
+  width: 50%;
+  margin-left: 200px;
+  display: flex;
+  align-items: center;
+}
 .dyno-albumart{
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
 }
 
 .selected-track{
   background-color: rgb(50, 216, 64);
 }
 .album-data-div{
-  padding-left: 100px;
+  margin-right: 100px;
+  width: 50%;
+  background-color: rgba(136, 136, 136, .3);
+  padding-top: 10px;
+  border-radius: 10px;
 }
 .album-data-div h2{
   margin-top: 0px;
+  font-size: 20px;
 }
 
 .album-name-sm{
-  font-size: 12px;
+  font-size: 15px;
+  padding-left: 15px;
 }

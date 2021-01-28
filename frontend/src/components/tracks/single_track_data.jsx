@@ -24,7 +24,7 @@ export default ({track, trackFeatures}) => {
             {
                 label: '1 to 10',
                 data: trackData,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
                 
@@ -48,10 +48,13 @@ export default ({track, trackFeatures}) => {
     return (
         <div className="dynoTrack-container">
             <div className="album-info">
-                <div>
+                <div className="album-art-div">
                     <img src={albumArtUrl} alt="album" className="dyno-albumart"/>
-                    <p className="album-name-sm">{track.album.name}</p>
-                    <p className="album-name-sm">by {track.artists[0].name}</p>
+                    <p className="album-name-sm"><b>{track.album.name}</b> 
+                    <br/>
+                    by {track.artists[0].name}
+                    </p>
+                   
                 </div>
                 <div className="album-data-div">
                     <h2>"{track.name}"</h2>

@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleTrackData from './single_track_data.jsx'
 import { useEffect } from 'react';
-
+import DataSelector from '../dataSelector/dataSelector_container'
 export default class Tracks extends React.Component{
     constructor(props){
         super(props)
@@ -68,7 +68,10 @@ export default class Tracks extends React.Component{
 
         
         return(
+            <>
+                
             <div className="tracklist-section">
+                
                 <div className="tracks-container">
                     <h1>Track List:</h1>
                     <ul className="track-ul">
@@ -80,6 +83,7 @@ export default class Tracks extends React.Component{
                     <SingleTrackData track={this.state.selectedTrack} trackFeatures={this.state.trackFeatures}/>
                 </div>
             </div>
+            </>
         )
     }
 

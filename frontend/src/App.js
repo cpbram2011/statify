@@ -101,7 +101,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-
+       
         <div className='navbar'>
           <div className='left'>
             <h1>Statify</h1>
@@ -128,7 +128,7 @@ class App extends React.Component {
             </form>
           </div>
         )}
-
+        
         {!this.state.modal ? null : (
           <div className='modal-background' onClick={() => this.closeModal()}>
             <div className='modal-wrapper'>
