@@ -76,7 +76,7 @@ export default class Tracks extends React.Component{
                     </ul>
                 </div>
                 <div className="track-show-container">
-                        <h1>THIS IS FOR THE TRACK DATA</h1>
+                        
                     <SingleTrackData track={this.state.selectedTrack} trackFeatures={this.state.trackFeatures}/>
                 </div>
             </div>
