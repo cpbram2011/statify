@@ -275,6 +275,7 @@ select {
   width: 100%;
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .graphContainer div {
