@@ -2,8 +2,16 @@ import { Radar } from 'react-chartjs-2'
 
 
 export default ({track, trackFeatures}) => {
+    if(track.type === 'episode'){
+        
+        return (
+            <h1 className="episode">
+                Sorry, this is not a song...
+            </h1>
+        )
+    }
     if(track.type === 'track'){
-        if(trackFeatures === undefined){
+        if (trackFeatures === undefined || trackFeatures === null){
         return null
         }
     }
@@ -44,11 +52,15 @@ export default ({track, trackFeatures}) => {
         
         
     }
-    
+    const openInNewTab = (url) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
+    }
     return (
         <div className="dynoTrack-container">
             <div className="album-info">
-                <div className="album-art-div">
+                
+                <div className="album-art-div" onClick={() => openInNewTab(track.external_urls.spotify)}>
                     <img src={albumArtUrl} alt="album" className="dyno-albumart"/>
                     <p className="album-name-sm"><b>{track.album.name}</b> 
                     <br/>
@@ -56,6 +68,7 @@ export default ({track, trackFeatures}) => {
                     </p>
                    
                 </div>
+                
                 <div className="album-data-div">
                     <h2>"{track.name}"</h2>
                     <p>
