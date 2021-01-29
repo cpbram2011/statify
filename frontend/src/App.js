@@ -7,7 +7,7 @@ import Graph from '../src/components/graph/graph_container';
 import Axios from 'axios';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
-
+import Search from './components/search/search'
 
 
 // import './assets/css/fonts.css';
@@ -181,7 +181,7 @@ class App extends React.Component {
         <Graph/>
 
         <Tracks/>
-        
+        <Search />
       </div>
     );
   }
