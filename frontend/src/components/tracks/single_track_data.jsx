@@ -2,6 +2,10 @@ import { Radar } from 'react-chartjs-2'
 
 
 export default ({track, trackFeatures}) => {
+    if (track == undefined){
+        return null
+    }
+
     if(track.type === 'episode'){
         
         return (

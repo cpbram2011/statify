@@ -9,6 +9,7 @@ import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
 
 
+
 // import './assets/css/fonts.css';
 const mSTP = state => {
   return ({
@@ -180,6 +181,7 @@ class App extends React.Component {
         <Graph/>
 
         <Tracks/>
+        
       </div>
     );
   }

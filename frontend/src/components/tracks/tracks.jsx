@@ -1,7 +1,6 @@
 import React from 'react';
 import SingleTrackData from './single_track_data.jsx'
-import { useEffect } from 'react';
-import DataSelector from '../dataSelector/dataSelector_container'
+
 export default class Tracks extends React.Component{
     constructor(props){
         super(props)
