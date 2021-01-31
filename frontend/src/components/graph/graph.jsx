@@ -25,8 +25,7 @@ export default class Graph extends React.Component {
         let speechiness = new Array(20).fill(0);
         let valence = new Array(20).fill(0);
 
-        let loudness = new Array(20).fill(0); //roughly -30 to 0
-        let duaration = new Array(20).fill(0);//in ms
+        
 
 
         const zeroFive = n => {  //.169

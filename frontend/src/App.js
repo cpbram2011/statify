@@ -1,10 +1,9 @@
 import React from 'react';
-import spotifyApi from '../src/util/spotify_api_util';
+import Axios from 'axios';
 import {setAccessToken, logout} from '../src/actions/spotify_actions'
 import {connect} from 'react-redux';
 import DataSelector from '../src/components/dataSelector/dataSelector_container'
 import Graph from '../src/components/graph/graph_container';
-import Axios from 'axios';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
 

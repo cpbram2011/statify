@@ -1,6 +1,4 @@
 import React from 'react';
-import spotifyApi from '../../util/spotify_api_util'
-import Graph from '../graph/graph_container';
 
 export default class DataSelector extends React.Component {
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import dynoDescriptions from './dynoText';
 
 

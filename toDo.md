@@ -1,5 +1,8 @@
 Todos
 
+
+-swap somethin on radar chart
+-duplicate items on tracklist
 -error handling
 -maybe a sharpflat ratio?   
 -add suggested max option to bar graphs
