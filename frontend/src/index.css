@@ -473,6 +473,7 @@ select {
 
 .tracklist-section{
   display: flex;
+  /* flex-wrap: wrap-reverse; */
   justify-content: space-between;
   text-align: center;
   
@@ -481,18 +482,20 @@ select {
 
 .album-info{
   width: 100%;
-  min-width: 600px;
+  width: 600px;
   display: flex;
   /* max-width: 900px; */
   /* align-items: center; */
-  margin-bottom:15px;
-  margin-top:15px;
-  justify-content: center;
+  margin: 15px auto
+  /* justify-content: center; */
+}
+.radar canvas {
+  margin: auto;
+  padding-right: 60px;
 }
 
 .album-art-div{
   width: 50%;
-  margin-left: 150px;
   margin-right: 50px;
   display: flex;
   align-items: center;
@@ -513,7 +516,6 @@ select {
   background-color: rgba(90, 221, 130, .8);
 }
 .album-data-div{
-  margin-right: 100px;
   width: 50%;
   background-color: rgba(136, 136, 136, .3);
   padding-top: 10px;

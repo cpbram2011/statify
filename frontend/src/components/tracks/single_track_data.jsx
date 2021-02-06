@@ -24,14 +24,14 @@ export default ({track, trackFeatures}) => {
     const albumArtUrl = track.album.images[0].url
     
     const trackData = [track.popularity / 10, 
-        trackFeatures.liveness * 10, 
-        trackFeatures.energy * 10, 
         trackFeatures.valence * 10, 
+        trackFeatures.energy * 10, 
+        trackFeatures.liveness * 10, 
         trackFeatures.danceability * 10, 
         trackFeatures.instrumentalness * 10]
         
     const data = {
-        labels: ['Popularity', 'Liveness', 'Energy', 'Valence', 'Danceability', 'Instrumentalness'],
+        labels: ['Popularity', 'Valence', 'Energy', 'Liveness', 'Danceability', 'Instrumentalness'],
         datasets: [
             {
                 label: '1 to 10',
@@ -46,6 +46,13 @@ export default ({track, trackFeatures}) => {
     }
 
     const options = {
+        responsive: false,
+        maintainAspectRatio: true,
+        layout: {
+            padding: {
+                right: 10
+            }
+        },
         scale: {
             ticks: { beginAtZero: true, stepSize: 1},
             labels: {fontSize: 20},
@@ -87,13 +94,16 @@ export default ({track, trackFeatures}) => {
                 </div>
 
             </div>
-            <div >
                 <div className="radar">
 
-                <Radar data={data} options={options} />
+                <Radar 
+                height={600}
+                width={600}
+                data={data} 
+                options={options}
+                />
                 </div>
 
-            </div>
         </div>
     )
 
