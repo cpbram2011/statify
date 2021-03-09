@@ -275,6 +275,7 @@ select {
   width: 100%;
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .graphContainer div {
@@ -347,6 +348,13 @@ select {
 }
 .pd-l-10{
   padding-left: 10px;
+}
+
+.common-data{
+  background-color: rgba(56, 56, 56, 0.8);
+  border-radius: 5px;
+  color:rgb(129, 255, 181);
+  padding: 20px;
 }
 .tracks-container{
  
@@ -439,9 +447,14 @@ select {
 }
 .track-ul li{
   
-  
+  transition: .2s;
+  transition-timing-function: ease-in-out;
   border-bottom: 1px solid rgb(156, 156, 156);
   margin: 0;
+}
+.track-ul li:hover{
+     background-color: rgba(90, 221, 130, .4);
+    cursor: pointer;
 }
 
 
@@ -535,3 +548,76 @@ select {
   font-size: 0.8em;
   padding-left: 15px;
 }
+.search-bar{
+  margin: 0px;
+  height: 200px;
+  display: flex;
+  width: 100%;
+  background-color: #00ed76d5;
+  align-items: center;
+  justify-content: center;
+
+}
+.search-bar input{
+  margin-left: 20px;
+  padding-left: 20px;
+  width: 300px;
+  height: 40px;
+  border-radius: 3px;
+  border:none;
+  font-size: 20px;
+}
+.search-bar input:focus{
+  outline: none;
+}
+.search-bar input:focus{
+  outline: none;
+}
+.search-tracklist-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 30px;
+}
+.search-tracks-container{
+ 
+  height: 400px;
+  margin-bottom: 10px;
+  background: black;
+  
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-track-ul{
+  list-style: none;
+  overflow-y: scroll;
+  margin-top:0px;
+  width: 80%;
+  min-width: 600px;
+  /* color: black; */
+  background-color: rgba(129, 129, 129, .2);
+  border: rgb(156, 156, 156) solid 1px;
+  padding-left: 0px;
+  margin-left: 10px;
+}
+.search-track-ul li{
+  
+  
+  border-bottom: 1px solid rgb(156, 156, 156);
+  margin: 0;
+}
+.search-track-show-container{
+  width: 100%;
+ 
+  display: flex;
+  justify-content: center;
+}
+.hidden{
+  margin-top: 0px;
+  display:none;
+}
+

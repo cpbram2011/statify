@@ -199,7 +199,7 @@ export default class Graph extends React.Component {
             <>
         <div className='graphContainer'>
             <div id="donut">
-                <p>Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
+                <p className="common-data">Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
             <Doughnut
                 data={keyData}
                 height={400}
@@ -220,7 +220,7 @@ export default class Graph extends React.Component {
                 <p id='keysig'>♯/♭</p>
             </div>
             <div id='modeChart'>
-                <p>{faveMode}</p>
+                <p className='common-data'>{faveMode}</p>
                 <Bar
                 height={400}
                 width={420}
@@ -230,7 +230,7 @@ export default class Graph extends React.Component {
 
             </div>
             <div id='tempoChart'>
-                <p>Average Tempo: {favTempo} bpm ({speed})</p>
+                <p className='common-data'>Average Tempo: {favTempo} bpm ({speed})</p>
                 <Bar
                 height={400}
                 width={420}

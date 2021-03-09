@@ -8,6 +8,7 @@ export default class Search extends React.Component{
             search: '',
             tracks: [],
             features: [],
+            artists: [],
             selectedTrack: undefined,
             selectedFeatures: undefined
         }
@@ -17,8 +18,8 @@ export default class Search extends React.Component{
     }
     componentDidUpdate(prevState, snapshot) {
         
-        if (snapshot.tracks[0] != this.state.tracks[0] ) {
-            this.setState({ selectedTrack: this.state.tracks[0], trackFeatures: this.state.features[0] })
+        if (snapshot.tracks[0] != this.state.tracks[0] || snapshot.selectedTrack != this.state.selectedTrack ) {
+            window.scroll({ top: 2800, behavior: 'smooth' })
         }
     }
 
@@ -40,29 +41,41 @@ export default class Search extends React.Component{
                 spotifyApi.getAudioFeaturesForTracks(trackIds)
                     .then(res => {
                         
-                        this.setState({ features: res.audio_features, tracks })
+                        this.setState({ features: res.audio_features, tracks, selectedTrack : undefined, selectedFeatures: undefined })
+                        window.scroll({ top: 2200, behavior: 'smooth' })
                     })
                 
                 
-            })   
+            })
         }
     }
 
     propagateTrackData(track, features, id) {
-        const lastEle = (this.state.selectedTrack === undefined) ? this.state.tracks[0].id : this.state.selectedTrack.id
-        const removeClassEle = document.getElementById(lastEle)
-        const addClassEle = document.getElementById(id)
+        
+        if(this.state.selectedTrack === undefined){
+            const addClassEle = document.getElementById(id)
+            addClassEle.classList.add('selected-track')
+          
+        }else{
+            const lastEle = this.state.selectedTrack.id
+            debugger
+            const removeClassEle = document.getElementById(lastEle)
+            const addClassEle = document.getElementById(id)
 
-        removeClassEle.classList.remove('selected-track')
-        addClassEle.classList.add('selected-track')
-
+            removeClassEle.classList.remove('selected-track')
+            addClassEle.classList.add('selected-track')
+            
+        }
+       
         this.setState({ selectedTrack: track, trackFeatures: features })
+        
     }
 
 
     render(){
         let tracks
         let features = this.state.features
+         
         if(this.state.tracks.length != 0){
 
             
@@ -70,7 +83,7 @@ export default class Search extends React.Component{
                 let minutes = Math.floor((ele.duration_ms / 1000) / 60).toString()
                 let seconds = Math.floor((ele.duration_ms / 1000) % 60)
                 seconds = (seconds < 10) ? `0${seconds.toString()}` : seconds.toString()
-                const style = i === 0 ? "selected-track" : ""
+                const style = ""
                 return (
                     <li id={ele.id} key={ele.id} onClick={() => this.propagateTrackData(ele, features[i], ele.id)} className={style}>
                         <div className="track-div">
@@ -88,30 +101,38 @@ export default class Search extends React.Component{
                         </div>
                     </li>)
             })
+            document.getElementById('search-result').classList.remove('hidden')
+           
         }
+        
         return(
-            <div className="tracklist-section">
-
-                <div className="tracks-container">
-                    <form action="search"  onSubmit={(e) => this.submitSearch(e)}>
-                        <input type="text" name="search" id="search" onChange={this.updateForm()}/>
+            <div>
+                <div className="search-bar">
+                    <h1>Search Tracks:</h1>
+                    <form action="search" onSubmit={(e) => this.submitSearch(e)}>
+                        <input type="text" name="search" id="search" onChange={this.updateForm()} />
                     </form>
-                    <ul>
-                        <div className="tracks-container">
-                            <h1>Track List:</h1>
-                            <ul className="track-ul">
+                </div>
+                <div className="search-tracklist-section hidden" id="search-result">
+                
+                
+            
+                    
+                        <div className="search-tracks-container">
+                            <h1>Search Results:</h1>
+                            <ul className="search-track-ul">
                                 {tracks}
                             </ul>
                         </div>
-                    </ul>
-                </div>
+             
 
                     
-                    <div className="track-show-container">
+                    <div className="search-track-show-container">
 
                         <SingleTrackData track={this.state.selectedTrack} trackFeatures={this.state.trackFeatures} />
                     </div>
                 
+            </div>
             </div>
         )
     }

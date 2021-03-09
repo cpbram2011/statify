@@ -6,7 +6,7 @@ import DataSelector from '../src/components/dataSelector/dataSelector_container'
 import Graph from '../src/components/graph/graph_container';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
-
+import Search from './components/search/search'
 
 
 // import './assets/css/fonts.css';
@@ -35,16 +35,16 @@ class App extends React.Component {
     const params = this.getHashParams();
     const token = params.access_token
     if(token){
+      
       this.props.setAccessToken(token)
     }
 
 
     this.state = {
       dropdown: false,
-      modal: false
+      modal: false,
+      
     }
-    
-    this.startCycle = this.startCycle.bind(this)
     window.state = this.state;
   }
 
@@ -73,7 +73,8 @@ class App extends React.Component {
   }
 
   startCycle () {
-    const refresh = this.state.params.refresh_token;
+    
+    const refresh = this.state.params.access_token;
     const setAuthToken = this.props.setAccessToken;
     setTimeout(() => {
       Axios.get('http://localhost:8000/refresh_token', {
@@ -96,7 +97,8 @@ class App extends React.Component {
   render() {
     
     if (!this.props.loggedIn) return <Splash message={this.props.errors}/>
-
+  
+ 
     
 
     return (
