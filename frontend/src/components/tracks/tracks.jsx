@@ -22,7 +22,7 @@ export default class Tracks extends React.Component{
         const lastEle = (this.state.selectedTrack === undefined) ? 0 : this.state.selectedId
         const removeClassEle = document.getElementById(lastEle)
         const addClassEle = document.getElementById(i)
-        debugger
+        
         removeClassEle.classList.remove('selected-track')
         addClassEle.classList.add('selected-track')
 

@@ -7,6 +7,7 @@ import Graph from '../src/components/graph/graph_container';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
 import Search from './components/search/search'
+import FilterTacks from './components/filterTracks/filter_tracks_component';
 
 
 // import './assets/css/fonts.css';
@@ -182,7 +183,7 @@ class App extends React.Component {
         <Graph/>
 
         <Tracks/>
-        
+        <FilterTacks/>
       </div>
     );
   }

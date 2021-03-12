@@ -51,18 +51,18 @@ button {
   border-bottom-right-radius: 3px;
 
 }
-button:hover{
+#selectDyno button:hover{
   background: #5ffa93;
 }
 button:focus{
   outline: none;
 }
 
-button:focus {
-  background: #5ffa93;
+#selectDyno button:focus {
+  background: #5f62fa;
 }
 
-button:active {
+#selectDyno button:active {
   transform: scale(0.99);
 }
 
@@ -299,7 +299,7 @@ select {
 }
 
 .selected {
-  background: #5ffa93;
+  background: #5f95fa;
 
 }
 
@@ -501,6 +501,7 @@ select {
   margin-bottom:15px;
   margin-top:15px;
   justify-content: center;
+  align-items: center;
 }
 
 .album-art-div{
@@ -621,3 +622,41 @@ select {
   display:none;
 }
 
+
+.filter:hover{
+  background-color: rgb(182, 79, 255);
+}
+
+.filter-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.filter-selection{
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+
+}
+
+.filter-selection button{
+  border-radius: 5px;
+}
+.top-track-show{
+  margin-top:10px;
+  height: 200px;
+  /* border: white solid 1px;
+  border-radius: 5px; */
+  
+}
+
+.album-data-div li {
+  list-style: none;
+  
+}
+.album-data-div ul {
+  margin: 0px;
+  text-align: center;
+  padding: 0px;
+}
