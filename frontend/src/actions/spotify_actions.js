@@ -133,15 +133,6 @@ export const requestMostRecent = () => dispatch => {
 };
 
 export const requestMySaved = () => dispatch => {
-    // spotifyApi.getMySavedTracks({limit: 50})
-    //   .then(res => {
-    //     dispatch(receiveTracks(res.items));
-    //     let trackIds = [];
-    //     res.items.forEach(item => {
-    //         trackIds.push(item.track.id)
-    //     });
-    //     dispatch(requestFeatures(trackIds))
-    //   })
 
       let trackIds = [];
       let tracks = [];
