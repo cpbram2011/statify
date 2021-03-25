@@ -18,6 +18,7 @@ export default class Tracks extends React.Component{
             this.setState({ selectedTrack: this.props.tracks[0], selectedId: 0, trackFeatures: this.props.features[0]})
         }
     }
+    
 
     propagateTrackData(track, features, i){
         // const lastEle = (this.state.selectedTrack === undefined) ? 0 : this.state.selectedId
