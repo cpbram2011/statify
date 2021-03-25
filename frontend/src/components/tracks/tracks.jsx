@@ -30,6 +30,7 @@ export default class Tracks extends React.Component{
         this.setState({selectedTrack: track, trackFeatures: features, selectedId: i})
     }
     
+    
     render(){
         if(this.props.tracks.length < 1 || this.props.features.length < 1 || this.props.features.length !== this.props.tracks.length){
         
