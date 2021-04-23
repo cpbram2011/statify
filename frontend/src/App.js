@@ -100,13 +100,14 @@ class App extends React.Component {
   
  
     
+    const curly = "{}";
 
     return (
       <div className="App">
        
         <div className='navbar'>
           <div className='left'>
-            <h1>Statify</h1>
+            <h1>Statify {curly}</h1>
           </div>
           <div className='right' onClick={() => this.toggleDropdown()}> 
             <img src={this.props.profpic} ></img>
