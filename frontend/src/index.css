@@ -1,6 +1,10 @@
 /* RESET */
-
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
+
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,6 +15,13 @@ body {
   background: black;
   color: white;
 }
+
+#root {
+  height: 100%;
+  width: 100%;
+
+}
+
 h1, h2, h3 {
    font-family: 'Varela Round', sans-serif;
 }
@@ -92,27 +103,60 @@ code {
   background: #555; 
 }
 
-
-.splash * {
-  text-align: center;
-  display: block;
+.splash {
+  margin: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 15% 10% 15% 60%;
 }
 
 .splash h1, h2 {
-  color:  #5ffa93;
+  color: black;
+  background-color:  #5ffa93;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size: 1em;
 }
 
+.splash h1 {
+  font-size: 50px;
+  letter-spacing: 10px;
+  
+}
+
+
+.splash h2 {
+  grid-row: 2;
+}
+
+
 .splash a {
+  box-sizing: border-box;
+  display: block;
+  width: fit-content;
+  margin: auto;
   font-size: 1.5em;
+  color: rgb(216, 216, 216);
+  text-align: center;
+  grid-row: 3;
+
+}
+
+.splash a:hover {
   color: white;
 }
 .splashimg {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   height: 60%;
-  width: 100%;
-  z-index: 0;
+  width: 60%;
+  grid-row: 4;
+  align-self: center;
+  min-width: 500px;
+  margin: 0 auto;
+  border-bottom: 4px solid #3a995a;
+  border-left:  4px dashed #42b167;
+  border-right: 4px dashed #42b167;
 }
 
 /* Dropdown */
@@ -592,6 +636,20 @@ select {
   align-items: center;
 }
 
+.sortby {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sortby * {
+  margin: 10px 5px;
+}
+
+.sortby select {
+  height: 40px;
+}
 .search-track-ul{
   list-style: none;
   overflow-y: scroll;

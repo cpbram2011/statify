@@ -98,7 +98,9 @@ export default class Tracks extends React.Component{
                 
                 <div className="tracks-container">
                     <h1>Track List:</h1>
-                    <h1>Sort By: </h1>
+                    <div className='sortby'>
+
+                    <h3>Sort By: </h3> 
                     <select onChange={e => this.setState({sortBy: e.target.value})}>
                         <option value="date added">Date Added</option>
                         <option value="popularity">Popularity</option>
@@ -107,6 +109,7 @@ export default class Tracks extends React.Component{
                         <option value="valence">Valence</option>
                         <option value="danceability">Danceability</option>
                     </select>
+                    </div>
                     <ul className="track-ul">
                     {trackEles}
                     </ul>
