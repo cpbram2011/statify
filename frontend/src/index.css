@@ -1,4 +1,4 @@
-/* RESET */
+RESET
 html {
   height: 100%;
 }
@@ -30,7 +30,7 @@ h1, h2, h3 {
   
 }
 .navbar h1 {
-  font-size: 50px;
+  /* font-size: 50px; */
   letter-spacing: 10px;
   
 }
@@ -121,7 +121,7 @@ code {
 }
 
 .splash h1 {
-  font-size: 50px;
+  font-size: 2em;
   letter-spacing: 10px;
   
 }
@@ -178,7 +178,6 @@ code {
 
 .navbar .right {
   cursor: pointer;
-  margin-right: 20px;
   display: flex;
   align-items: center;
   padding: 2px;
@@ -532,8 +531,8 @@ select {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  
-    margin-top: 30px;
+  overflow-x: scroll;
+  margin-top: 30px;
 }
 
 .album-info{
@@ -679,3 +678,18 @@ select {
   display:none;
 }
 
+@media only screen and (max-width: 480px) {
+  .tracklist-section {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .tracks-container{
+    height: 50%;
+    width: 100%;
+  }
+
+  .track-ul {
+    width: 100%;
+  }
+}

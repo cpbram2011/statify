@@ -7,9 +7,9 @@ import Graph from '../src/components/graph/graph_container';
 import Splash from './components/splash/splash';
 import Tracks from './components/tracks/track_component'
 import Search from './components/search/search'
-
-
 // import './assets/css/fonts.css';
+
+
 const mSTP = state => {
   return ({
     loggedIn: state.session.isAuthenticated,
@@ -112,7 +112,7 @@ class App extends React.Component {
           <div className='right' onClick={() => this.toggleDropdown()}> 
             <img src={this.props.profpic} ></img>
             <p onClick={() => this.toggleDropdown()}>
-            {this.props.username}
+            {this.props.username === 'demo' ? '≡ DemoUser' : this.props.username}
             </p>
           </div>
 
