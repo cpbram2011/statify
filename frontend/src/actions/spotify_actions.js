@@ -51,7 +51,7 @@ export const setAccessToken = accessToken => dispatch => {
      .then(res => {
        dispatch(receiveUserData({
          username: res.display_name,
-         profpic: res.images[0].url
+         profpic: res.images[0] ? res.images[0].url : null
        }))
       })
 }

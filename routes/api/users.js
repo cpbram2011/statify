@@ -6,7 +6,6 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
 
@@ -59,10 +58,10 @@ router.get('/login', function (req, res) {
             redirect_uri: redirect_uri,
             state: state
         }));
+
 });
 
 router.get('/callback', function (req, res) {
-
     // your application requests refresh and access tokens
     // after checking the state parameter
 
@@ -131,6 +130,7 @@ router.get('/callback', function (req, res) {
 router.get('/test', (req, res) => {
     res.send('test complete')
 })
+
 router.get('/refresh_token', function (req, res) {
 
     // requesting access token from refresh token
@@ -145,6 +145,7 @@ router.get('/refresh_token', function (req, res) {
         },
         json: true
     };
+
 
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {

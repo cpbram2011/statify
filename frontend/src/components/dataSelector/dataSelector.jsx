@@ -5,7 +5,7 @@ export default class DataSelector extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: 'top',
+            data: 'liked',
             time: 'medium_term'
         };
         this.getData = this.getData.bind(this);
