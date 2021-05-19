@@ -107,7 +107,7 @@ code {
   margin: 0;
   height: 100%;
   display: grid;
-  grid-template-rows: 15% 10% 15% 60%;
+  grid-template-rows: 15% 10% 10% 5% 60%;
 }
 
 .splash h1, h2 {
@@ -131,6 +131,17 @@ code {
   grid-row: 2;
 }
 
+.splash h3 {
+  color: #5ffa93;
+  cursor: pointer;
+  margin: auto;
+  font-size: 1em;
+}
+
+.splash h3:hover {
+  
+  color: #ffffff;
+}
 
 .splash a {
   box-sizing: border-box;
@@ -147,13 +158,40 @@ code {
 .splash a:hover {
   color: white;
 }
+
+.splash-modal {
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-modal p {
+  margin-bottom: 0;
+}
+
+.splash-modal button {
+  padding: 0;
+  width: 30px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.splash-modal img {
+  height: 15px;
+  width: 15px;
+  margin: auto;
+}
+
+
+
 .splashimg {
   height: 60%;
   width: 60%;
-  grid-row: 4;
-  align-self: center;
+  grid-row: 5;
+  align-self: end;
   min-width: 500px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   border-bottom: 4px solid #3a995a;
   border-left:  4px dashed #42b167;
   border-right: 4px dashed #42b167;
@@ -358,6 +396,8 @@ select {
 }
 
 
+
+
 #selectDyno {
   margin-left: max(8%, 5px);
 
@@ -371,7 +411,7 @@ select {
   width: 100%;
 }
 .dynoGraph {
-  min-width: 400px;
+  /* min-width: 400px; */
   max-width: 800px;
   flex-grow: 1.4;
 }
@@ -405,7 +445,7 @@ select {
   height: 800px;
   margin-bottom: 10px;
   background: black;
-  min-width: 600px;
+  /* min-width: 600px; */
   margin-left: 10px;
   display: flex;
   flex-direction: column;
@@ -426,7 +466,7 @@ select {
 }
 .track-show-container{
   width: 75%;
-  min-width: 600px;
+  /* min-width: 600px; */
 }
 .song-data{
   display: flex;
@@ -481,7 +521,7 @@ select {
   list-style: none;
   overflow-y: scroll;
   margin-top:0px;
-  min-width: 600px;
+  /* min-width: 600px; */
   max-width: 625px;
   /* color: black; */
   background-color: rgba(129, 129, 129, .2);
@@ -536,9 +576,19 @@ select {
     margin-top: 30px;
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: rgb(13, 39, 48);
+  }
+  .tracklist-section{
+    flex-direction: column-reverse;
+  }
+}
+
+
 .album-info{
   width: 100%;
-  min-width: 600px;
+  /* min-width: 600px; */
   display: flex;
   /* max-width: 900px; */
   /* align-items: center; */
@@ -556,7 +606,7 @@ select {
   border-radius: 5px;
   transition: .2s;
   transition-timing-function: ease-in-out;
-  min-width: 300px;
+  /* min-width: 300px; */
 }
 .dyno-albumart{
   width: 140px;
@@ -575,7 +625,7 @@ select {
   background-color: rgba(136, 136, 136, .3);
   padding-top: 10px;
   border-radius: 10px;
-  min-width: 200px;
+  /* min-width: 200px; */
   
 }
 
@@ -650,12 +700,14 @@ select {
 .sortby select {
   height: 40px;
 }
+
+
 .search-track-ul{
   list-style: none;
   overflow-y: scroll;
   margin-top:0px;
   width: 80%;
-  min-width: 600px;
+  /* min-width: 600px; */
   /* color: black; */
   background-color: rgba(129, 129, 129, .2);
   border: rgb(156, 156, 156) solid 1px;
