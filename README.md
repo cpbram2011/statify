@@ -1,6 +1,6 @@
 # Statify
 
-[Click here for live site](https://statifymusic.herokuapp.com/#/)
+[Click here for live site](https://statify-app.herokuapp.com/#/)
 
 
 ![Statify](statifysnip.PNG)
