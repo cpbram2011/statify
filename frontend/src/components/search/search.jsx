@@ -17,7 +17,7 @@ export default class Search extends React.Component{
 
     }
     componentDidUpdate(prevState, snapshot) {
-        // updated compenent
+        
         if (snapshot.tracks[0] != this.state.tracks[0] || snapshot.selectedTrack != this.state.selectedTrack ) {
             window.scroll({ top: 2800, behavior: 'smooth' })
         }
