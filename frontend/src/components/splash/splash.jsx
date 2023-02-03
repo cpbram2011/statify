@@ -35,7 +35,7 @@ export default ({message}) => {
 
         { process.env.NODE_ENV === 'production' ? 
             (   
-            <a href='https://statifymusic.herokuapp.com/login' > Login to Spotify </a>
+            <a href='https://statify-app.herokuapp.com/login' > Login to Spotify </a>
             ):(
                 <a href='http://localhost:8000/login' > Login to Spotify </a>
             )
