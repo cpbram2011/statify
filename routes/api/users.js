@@ -44,21 +44,27 @@ router.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 
 router.get('/login', function (req, res) {
-
+   try{
+    if(!process.env.CLIENT_ID){
+        throw new Error("No client Id")
+    }
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
     // your routerlocation requests authorization
-    console.log(":::::::: CLIENT ID ::::::::::", client_id)
+    console.log(":::::::: CLIENT ID ::::::::::", process.env.CLIENT_ID)
     var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
-            client_id: client_id,
+            client_id: process.env.CLIENT_ID,
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
         }));
+   }catch(ex){
+    throw new Error("Couldn't log in")
+   }
 
 });
 
