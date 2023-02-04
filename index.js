@@ -1,7 +1,7 @@
-const express = require("express");
-const path = require('path');
 const dotenv = require('dotenv')
 dotenv.config()
+const express = require("express");
+const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const auth = require("./routes/api/users");
@@ -17,7 +17,7 @@ app.use(auth)
 //     res.send('nice job')
 // })
 
-console.log("PROCES::::::::", process.env.CLIENT_ID)
+console.log("PROCESS::::::::", process.env.CLIENT_ID)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
     app.get('/', (req, res) => {
