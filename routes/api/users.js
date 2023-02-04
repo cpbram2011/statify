@@ -1,5 +1,5 @@
 const dotenv = require('dotenv')
-dotenv.config('../.env')
+dotenv.config('../../.env')
 var secret = require('../../config/keys')
 var express = require('express'); // Express web server framework
 var router = express.Router();
@@ -10,7 +10,9 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-console.log("::::::::::: PROCESS CLIENT ID ::::::::", process.env.CLIENT_ID)
+// var client_id = "df5b3ef7de66412a861a1f8e4d703744"; // Your client id
+// var client_secret = "1de3a858b22d48ef992027d1979619b4"; // Your secret
+
 var redirect_uri;
 if (process.env.NODE_ENV === 'production') {
 
@@ -92,7 +94,7 @@ router.get('/callback', function (req, res) {
         };
 
         request.post(authOptions, function (error, response, body) {
-            console.log("::::::::::::::::: response", body)
+
             if (!error && response.statusCode === 200) {
 
                 var access_token = body.access_token,
@@ -106,7 +108,7 @@ router.get('/callback', function (req, res) {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    console.log(body);
+
                 });
 
                 var res_uri;

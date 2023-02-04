@@ -1,5 +1,4 @@
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require('dotenv').config()
 const express = require("express");
 const path = require('path');
 const app = express();
@@ -12,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(auth)
-console.log(":::::::::::::::: PROCESS", process.env.CLIENT_ID)
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
     app.get('/', (req, res) => {
