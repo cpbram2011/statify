@@ -44,7 +44,7 @@ router.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 
 router.get('/login', function (req, res) {
-    
+
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
@@ -54,7 +54,7 @@ router.get('/login', function (req, res) {
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
-            client_id: "df5b3ef7de66412a861a1f8e4d703744",
+            client_id: client_id,
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
@@ -85,7 +85,7 @@ router.get('/callback', function (req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (Buffer("df5b3ef7de66412a861a1f8e4d703744" + ':' + "1de3a858b22d48ef992027d1979619b4").toString('base64'))
+                'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
@@ -139,7 +139,7 @@ router.get('/refresh_token', function (req, res) {
     var refresh_token = req.query.refresh_token;  
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
-        headers: { 'Authorization': 'Basic ' + (Buffer("df5b3ef7de66412a861a1f8e4d703744" + ':' + "1de3a858b22d48ef992027d1979619b4").toString('base64')) },
+        headers: { 'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64')) },
         form: {
             grant_type: 'refresh_token',
             refresh_token: "AQBzRHl6HRyOgqH4Uf4e0vo8O4eqwFkwdkVJ86gJVbBzc9YsDR7d8mQj7C-SMqya2op1zL8RhVJ3Ofwj-nlS-rkE3HGcMH8vkChXkDuQTuhlRdEN276EJbgCcfOHSYsPXdc"
