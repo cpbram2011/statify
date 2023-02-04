@@ -8,8 +8,8 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = "df5b3ef7de66412a861a1f8e4d703744"; // Your client id
-var client_secret = "1de3a858b22d48ef992027d1979619b4"; // Your secret
+var client_id = secret.client_id; // Your client id
+var client_secret = secret.secretOrKey; // Your secret
 
 var redirect_uri;
 if (process.env.NODE_ENV === 'production') {
@@ -51,7 +51,7 @@ router.get('/login', function (req, res) {
     res.cookie(stateKey, state);
 
     // your routerlocation requests authorization
-    console.log("LOGIN :::::::::::::: ", process.env)
+
     var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
@@ -71,7 +71,6 @@ router.get('/callback', function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
-
     if (state === null || state !== storedState) {
         res.redirect('/#' +
             querystring.stringify({
@@ -87,12 +86,13 @@ router.get('/callback', function (req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64'))
+                'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
 
         request.post(authOptions, function (error, response, body) {
+            console.log("::::::::::::::::: response", body)
             if (!error && response.statusCode === 200) {
 
                 var access_token = body.access_token,
@@ -141,7 +141,7 @@ router.get('/refresh_token', function (req, res) {
     var refresh_token = req.query.refresh_token;  
     var authOptions = {
         url: 'https://accounts.spotify.com/api/token',
-        headers: { 'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64')) },
+        headers: { 'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64')) },
         form: {
             grant_type: 'refresh_token',
             refresh_token: "AQBzRHl6HRyOgqH4Uf4e0vo8O4eqwFkwdkVJ86gJVbBzc9YsDR7d8mQj7C-SMqya2op1zL8RhVJ3Ofwj-nlS-rkE3HGcMH8vkChXkDuQTuhlRdEN276EJbgCcfOHSYsPXdc"
