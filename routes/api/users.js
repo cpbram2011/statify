@@ -1,4 +1,6 @@
 var secret = require('../../config/keys')
+const dotenv = require('dotenv')
+dotenv.config('/.env')
 var express = require('express'); // Express web server framework
 var router = express.Router();
 var request = require('request'); // "Request" library
