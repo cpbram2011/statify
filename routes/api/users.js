@@ -73,7 +73,8 @@ router.get('/callback', function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
-
+    client_id ='fc82722fd1d54165bdfd82052938d1a5',
+    secretOrKey = '31518766564d475e9ee397fe88fbc853'
     if (state === null || state !== storedState) {
         res.redirect('/#' +
             querystring.stringify({
@@ -89,7 +90,7 @@ router.get('/callback', function (req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64'))
+                'Authorization': 'Basic ' + (Buffer.alloc(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
