@@ -8,10 +8,10 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = secret.client_id; // Your client id
-var client_secret = secret.secretOrKey; // Your secret
-// var client_id = "df5b3ef7de66412a861a1f8e4d703744"; // Your client id
-// var client_secret = "1de3a858b22d48ef992027d1979619b4"; // Your secret
+// var client_id = secret.client_id; // Your client id
+// var client_secret = secret.secretOrKey; // Your secret
+var client_id = "df5b3ef7de66412a861a1f8e4d703744"; // Your client id
+var client_secret = "1de3a858b22d48ef992027d1979619b4"; // Your secret
 
 var redirect_uri;
 if (process.env.NODE_ENV === 'production') {
