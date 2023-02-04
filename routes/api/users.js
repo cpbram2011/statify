@@ -48,7 +48,7 @@ router.get('/login', function (req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
-    // your routerlication requests authorization
+    // your routerlocation requests authorization
     console.log(":::::::: CLIENT ID ::::::::::", client_id)
     var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
