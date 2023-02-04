@@ -1,6 +1,6 @@
-var secret = require('../../config/keys')
 const dotenv = require('dotenv')
-dotenv.config('/.env')
+dotenv.config('../.env')
+var secret = require('../../config/keys')
 var express = require('express'); // Express web server framework
 var router = express.Router();
 var request = require('request'); // "Request" library
@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = secret.client_id; // Your client id
 var client_secret = secret.secretOrKey; // Your secret
-
+console.log("::::::::::: PROCESS ::::::::", process.env.CLIENT_ID)
 var redirect_uri;
 if (process.env.NODE_ENV === 'production') {
 
