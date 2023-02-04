@@ -13,11 +13,6 @@ app.use(bodyParser.json());
 
 app.use(auth)
 
-// app.get('/', (req, res) => {
-//     res.send('nice job')
-// })
-
-console.log("PROCESS::::::::", process.env.CLIENT_ID)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
     app.get('/', (req, res) => {
