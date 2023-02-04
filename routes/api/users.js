@@ -50,7 +50,8 @@ router.get('/login', function (req, res) {
     console.log("PROCESS::::::::", process.env.CLIENT_ID)
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
-
+    client_id ='fc82722fd1d54165bdfd82052938d1a5',
+    secretOrKey = '31518766564d475e9ee397fe88fbc853'
     // your routerlocation requests authorization
 
     var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
