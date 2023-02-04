@@ -1,6 +1,4 @@
 var secret = require('../../config/keys')
-const dotenv = require('dotenv')
-dotenv.config()
 var express = require('express'); // Express web server framework
 var router = express.Router();
 var request = require('request'); // "Request" library
@@ -46,12 +44,10 @@ router.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 
 router.get('/login', function (req, res) {
-   
-    console.log("PROCESS::::::::", process.env.NODE_ENV)
+    
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
-    client_id ='fc82722fd1d54165bdfd82052938d1a5'
-    redirect_uri = 'https://statify-app.herokuapp.com/callback';
+
     // your routerlocation requests authorization
 
     var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
@@ -73,8 +69,7 @@ router.get('/callback', function (req, res) {
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
-    client_id ='fc82722fd1d54165bdfd82052938d1a5',
-    secretOrKey = '31518766564d475e9ee397fe88fbc853'
+
     if (state === null || state !== storedState) {
         res.redirect('/#' +
             querystring.stringify({
@@ -90,7 +85,7 @@ router.get('/callback', function (req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (Buffer.alloc(client_id + ':' + client_secret).toString('base64'))
+                'Authorization': 'Basic ' + (Buffer(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
